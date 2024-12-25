@@ -14,7 +14,7 @@ apis:
     properties:
       - url: https://developer.nytimes.com/docs/archive-product/1/overview
         type: Documentation
-      - url: openapinew-york-times-archive-openapi-original.yml
+      - url: openapi/new-york-times-archive-openapi-original.yml
         type: OpenAPI
     description: >-
       The Archive API returns an array of NYT articles for a given month, going
@@ -30,7 +30,7 @@ apis:
     properties:
       - url: https://developer.nytimes.com/docs/articlesearch-product/1/overview
         type: Documentation
-      - url: openapinew-york-times-article-search-openapi-original.yml
+      - url: openapi/new-york-times-article-search-openapi-original.yml
         type: OpenAPI
     description: >-
       Use the Article Search API to look up articles by keyword. You can refine
@@ -44,7 +44,7 @@ apis:
     properties:
       - url: https://developer.nytimes.com/docs/books-product/1/overview
         type: Documentation
-      - url: openapinew-york-times-books-openapi-original.yml
+      - url: openapi/new-york-times-books-openapi-original.yml
         type: OpenAPI
     description: >-
       The Books API provides information about book reviews and The New York
@@ -58,7 +58,7 @@ apis:
     properties:
       - url: https://developer.nytimes.com/docs/most-popular-product/1/overview
         type: Documentation
-      - url: openapinew-york-times-most-popular-openapi-original.yml
+      - url: openapi/new-york-times-most-popular-openapi-original.yml
         type: OpenAPI
     description: >-
       Provides services for getting the most popular articles on NYTimes.com
@@ -83,7 +83,7 @@ apis:
     properties:
       - url: https://example.com/documentation
         type: Documentation
-      - url: openapinew-york-times-movie-review-openapi-original.yml
+      - url: openapi/new-york-times-movie-review-openapi-original.yml
         type: OpenAPI
     description: >-
       As an alternative, use the Article Search API to get New York Times movie
@@ -102,7 +102,7 @@ apis:
     properties:
       - url: https://developer.nytimes.com/docs/semantic-api-product/1/overview
         type: Documentation
-      - url: openapinew-york-times-semantic-openapi-original.yml
+      - url: openapi/new-york-times-semantic-openapi-original.yml
         type: OpenAPI
     description: >-
       The Semantic API complements the Articles API. With the Semantic API, you
@@ -119,7 +119,7 @@ apis:
     properties:
       - url: https://developer.nytimes.com/docs/timestags-product/1/overview
         type: Documentation
-      - url: openapinew-york-times-times-tags-openapi-original.yml
+      - url: openapi/new-york-times-times-tags-openapi-original.yml
         type: OpenAPI
     description: >-
       With the TimesTags API, you can mine the riches of the New York Times tag
@@ -137,7 +137,7 @@ apis:
     properties:
       - url: https://developer.nytimes.com/docs/timeswire-product/1/overview
         type: Documentation
-      - url: openapinew-york-times-times-newswire-openapi-original.yml
+      - url: openapi/new-york-times-times-newswire-openapi-original.yml
         type: OpenAPI
     description: >-
       With the Times Newswire API, you can get links and metadata for Times'
@@ -152,7 +152,7 @@ apis:
     properties:
       - url: https://developer.nytimes.com/docs/top-stories-product/1/overview
         type: Documentation
-      - url: openapinew-york-times-top-stories-openapi-original.ymll
+      - url: openapi/new-york-times-top-stories-openapi-original.ymll
         type: OpenAPI
     description: >-
       The Top Stories API returns an array of articles currently on the
@@ -175,11 +175,6 @@ common:
     type: TermsOfService
 created: '2023-10-06T00:00:00.000Z'
 modified: '2024-12-21'
-overlays:
-  - url: overlays/apis-io-search.yml
-    type: APIs.io Search
-  - url: overlays/apis-io-search.yml
-    type: API Evangelist Ratings
 description: >-
   The official developer area for accessing The New York Times archive, article
   search, books, most popular, reviews, semantic, times tags, times wire, and
