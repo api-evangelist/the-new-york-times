@@ -1,4 +1,4 @@
-executed: '2024-12-21T19:04:28.885Z'
+executed: '2025-01-04T02:00:39.250Z'
 results:
   - code: apis-json-specification-aid-info
     message: There is an aid.
@@ -2028,11 +2028,11 @@ results:
     severity: 2
     range:
       start:
-        line: 182
+        line: 177
         character: 13
       end:
         line: 185
-        character: 19
+        character: 48
   - code: apis-json-maintainers-info
     message: There is a maintainer object.
     path:
@@ -2085,3 +2085,15 @@ results:
       end:
         line: 190
         character: 28
+  - code: apis-json-specification-type-info
+    message: There is a specification type.
+    path:
+      - type
+    severity: 2
+    range:
+      start:
+        line: 191
+        character: 6
+      end:
+        line: 191
+        character: 14
