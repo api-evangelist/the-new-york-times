@@ -1,6 +1,6 @@
 openapi: 3.0.1
 info:
-  title: Times Newswire API
+  title: The New York Times Times Newswire API
   description: |
     With the Times Newswire API, you can get links and metadata for Times' articles as soon as they are published on NYTimes.com. The Times Newswire API provides an up-to-the-minute stream of published articles.  You can filter results by source (all, nyt, inyt) and section (arts, business, ...).
     ```
@@ -25,62 +25,62 @@ info:
     ```
   version: 3.0.0
 servers:
-- url: https://api.nytimes.com/svc/news/v3
+  - url: https://api.nytimes.com/svc/news/v3
 security:
-- apikey: []
+  - apikey: []
 paths:
   /content/{source}/{section}.json:
     get:
       parameters:
-      - name: source
-        in: path
-        description: |
-          Limits the set of items by originating source.
+        - name: source
+          in: path
+          description: |
+            Limits the set of items by originating source.
 
-          all = items from both The New York Times and The International New York Times
-          nyt = New York Times items only
-          inyt = International New York Times items only (FKA The International Herald Tribune)
-        required: true
-        schema:
-          type: string
-          enum:
-          - all
-          - nyt
-          - inyt
+            all = items from both The New York Times and The International New York Times
+            nyt = New York Times items only
+            inyt = International New York Times items only (FKA The International Herald Tribune)
+          required: true
+          schema:
+            type: string
+            enum:
+              - all
+              - nyt
+              - inyt
+            x-consoleDefault: all
           x-consoleDefault: all
-        x-consoleDefault: all
-      - name: section
-        in: path
-        description: |
-          Limits the set of items by a section.
-          all | A section name
+        - name: section
+          in: path
+          description: |
+            Limits the set of items by a section.
+            all | A section name
 
-           To get all sections, specify all. To get a particular section, use the section name returned by this request:
-           http://api.nytimes.com/svc/news/v3/content/section-list.json
-        required: true
-        schema:
-          type: string
-          default: all
+             To get all sections, specify all. To get a particular section, use the section name returned by this request:
+             http://api.nytimes.com/svc/news/v3/content/section-list.json
+          required: true
+          schema:
+            type: string
+            default: all
+            x-consoleDefault: all
           x-consoleDefault: all
-        x-consoleDefault: all
-      - name: limit
-        in: query
-        description: Limits the number of results.  Set to increment of 20 up to 500.
-        schema:
-          multipleOf: 20.0
-          maximum: 500
-          minimum: 20
-          type: integer
-          default: 20
-      - name: offset
-        in: query
-        description: Sets the starting point of the result set.
-        schema:
-          multipleOf: 20.0
-          maximum: 500
-          minimum: 0
-          type: integer
-          default: 0
+        - name: limit
+          in: query
+          description: Limits the number of results.  Set to increment of 20 up to 500.
+          schema:
+            multipleOf: 20.0
+            maximum: 500
+            minimum: 20
+            type: integer
+            default: 20
+        - name: offset
+          in: query
+          description: Sets the starting point of the result set.
+          schema:
+            multipleOf: 20.0
+            maximum: 500
+            minimum: 0
+            type: integer
+            default: 0
       responses:
         "200":
           description: An array of Articles
@@ -106,19 +106,18 @@ paths:
           description: Unauthorized request.  Make sure api-key is set.
           content: {}
         "429":
-          description: Too many requests.  You reached your per minute or per day
-            rate limit.
+          description: Too many requests.  You reached your per minute or per day rate limit.
           content: {}
   /content.json:
     get:
       parameters:
-      - name: url
-        in: query
-        description: "The complete URL of a specific news item, URL-encoded or backslash-escaped"
-        required: true
-        schema:
-          type: string
-          default: https%3A%2F%2Fwww.nytimes.com%2F2018%2F09%2F19%2Fworld%2Fasia%2Fnorth-south-korea-nuclear-weapons.html
+        - name: url
+          in: query
+          description: "The complete URL of a specific news item, URL-encoded or backslash-escaped"
+          required: true
+          schema:
+            type: string
+            default: https%3A%2F%2Fwww.nytimes.com%2F2018%2F09%2F19%2Fworld%2Fasia%2Fnorth-south-korea-nuclear-weapons.html
       responses:
         "200":
           description: An array of Articles
@@ -144,8 +143,7 @@ paths:
           description: Unauthorized request.  Make sure api-key is set.
           content: {}
         "429":
-          description: Too many requests.  You reached your per minute or per day
-            rate limit.
+          description: Too many requests.  You reached your per minute or per day rate limit.
           content: {}
   /content/section-list.json:
     get:
@@ -174,8 +172,7 @@ paths:
           description: Unauthorized request.  Make sure api-key is set.
           content: {}
         "429":
-          description: Too many requests.  You reached your per minute or per day
-            rate limit.
+          description: Too many requests.  You reached your per minute or per day rate limit.
           content: {}
 components:
   schemas:

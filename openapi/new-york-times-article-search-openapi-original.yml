@@ -8,7 +8,7 @@ info:
 
      Note: In URI examples and field names, italics indicate placeholders for variables or values. Brackets [ ] indicate optional items. Parentheses ( ) are not a convention â€” when URIs include parentheses, interpret them literally.
   termsOfService: http://developer.nytimes.com/tou
-  title: Article Search API
+  title: The New York Times Article Search API
   version: 1.0.0
   x-apiClientRegistration:
     url: http://developer.nytimes.com/signup
@@ -195,7 +195,7 @@ paths:
                     type: object
                 type: object
           description: The docs requested by the article search.
-      summary: Article Search
+      summary: The New York Times Article Search
       tags:
         - Stories
 components:

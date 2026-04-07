@@ -1,6 +1,6 @@
 openapi: 3.0.1
 info:
-  title: Top Stories
+  title: The New York Times Top Stories
   description: |
     The Top Stories API returns an array of articles currently on the specified section (arts, business, ...).
 
@@ -26,52 +26,52 @@ info:
     ```
   version: 2.0.0
 servers:
-- url: https://api.nytimes.com/svc/topstories/v2
+  - url: https://api.nytimes.com/svc/topstories/v2
 security:
-- apikey: []
+  - apikey: []
 paths:
   /{section}.json:
     get:
       tags:
-      - Stories
-      summary: Top Stories
+        - Stories
+      summary: The New York Times Top Stories
       description: |
         The Top Stories API returns an array of articles currently on the specified section.
       parameters:
-      - name: section
-        in: path
-        description: The section the story appears in.
-        required: true
-        schema:
-          type: string
-          default: home
-          enum:
-          - arts
-          - automobiles
-          - books/review
-          - business
-          - fashion
-          - food
-          - health
-          - home
-          - insider
-          - magazine
-          - movies
-          - nyregion
-          - obituaries
-          - opinion
-          - politics
-          - realestate
-          - science
-          - sports
-          - sundayreview
-          - technology
-          - theater
-          - t-magazine
-          - travel
-          - upshot
-          - us
-          - world
+        - name: section
+          in: path
+          description: The section the story appears in.
+          required: true
+          schema:
+            type: string
+            default: home
+            enum:
+              - arts
+              - automobiles
+              - books/review
+              - business
+              - fashion
+              - food
+              - health
+              - home
+              - insider
+              - magazine
+              - movies
+              - nyregion
+              - obituaries
+              - opinion
+              - politics
+              - realestate
+              - science
+              - sports
+              - sundayreview
+              - technology
+              - theater
+              - t-magazine
+              - travel
+              - upshot
+              - us
+              - world
       responses:
         "200":
           description: An array of articles.
@@ -98,8 +98,7 @@ paths:
           description: Unauthorized request.  Make sure api-key is set.
           content: {}
         "429":
-          description: Too many requests.  You reached your per minute or per day
-            rate limit.
+          description: Too many requests.  You reached your per minute or per day rate limit.
           content: {}
 components:
   schemas:

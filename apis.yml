@@ -8,7 +8,8 @@ apis:
       - Archive
       - Months
       - Years
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: 
+      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.nytimes.com
     humanURL: https://developer.nytimes.com/docs/archive-product/1/overview
     properties:
@@ -17,16 +18,18 @@ apis:
       - url: openapi/new-york-times-archive-openapi-original.yml
         type: OpenAPI
     description: >-
-      The Archive API returns an array of NYT articles for a given month, going
-      back to 1851. Its response fields are the same as the Article Search API. 
+      The Archive API returns an array of NYT articles for a given month, going back
+      to 1851. Its response fields are the same as the Article Search API.
   - aid: the-new-york-times:article-search-api
     name: The New York Times Article Search API
     tags:
       - Articles
       - Search
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: 
+      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.nytimes.com
-    humanURL: https://developer.nytimes.com/docs/articlesearch-product/1/overview
+    humanURL: 
+      https://developer.nytimes.com/docs/articlesearch-product/1/overview
     properties:
       - url: https://developer.nytimes.com/docs/articlesearch-product/1/overview
         type: Documentation
@@ -38,7 +41,8 @@ apis:
   - aid: the-new-york-times:books-api
     name: The New York Times Books API
     tags: []
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: 
+      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.example.com
     humanURL: https://developer.nytimes.com/docs/books-product/1/overview
     properties:
@@ -52,7 +56,8 @@ apis:
   - aid: the-new-york-times:most-popular
     name: The New York Times Most Popular
     tags: []
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: 
+      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.nytimes.com
     humanURL: https://developer.nytimes.com/docs/most-popular-product/1/overview
     properties:
@@ -76,7 +81,8 @@ apis:
       - Search
       - Search
       - Types
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: 
+      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: >-
       https://api.apis.guru/v2/specs/nytimes.com/movie_reviews/2.0.0/openapi.yaml
     humanURL: https://developer.nytimes.com/docs/movie-reviews-api/1/overview
@@ -96,7 +102,8 @@ apis:
       - Search
       - Specific
       - Types
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: 
+      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.example.com
     humanURL: https://developer.nytimes.com/docs/semantic-api-product/1/overview
     properties:
@@ -113,7 +120,8 @@ apis:
     name: The New York Times TimesTags API
     tags:
       - Tags
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: 
+      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.example.com
     humanURL: https://developer.nytimes.com/docs/timestags-product/1/overview
     properties:
@@ -122,16 +130,17 @@ apis:
       - url: openapi/new-york-times-times-tags-openapi-original.yml
         type: OpenAPI
     description: >-
-      With the TimesTags API, you can mine the riches of the New York Times tag
-      set. The TimesTags service matches your query to the controlled
-      vocabularies that fuel NYTimes.com metadata. 
+      With the TimesTags API, you can mine the riches of the New York Times tag set.
+      The TimesTags service matches your query to the controlled vocabularies that
+      fuel NYTimes.com metadata.
   - aid: the-new-york-times:times-newswire-api
     name: The New York Times Times Newswire API
     tags:
       - Content
       - Sections
       - Sources
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: 
+      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.example.com
     humanURL: https://developer.nytimes.com/docs/timeswire-product/1/overview
     properties:
@@ -140,13 +149,14 @@ apis:
       - url: openapi/new-york-times-times-newswire-openapi-original.yml
         type: OpenAPI
     description: >-
-      With the Times Newswire API, you can get links and metadata for Times'
-      articles as soon as they are published on NYTimes.com. The Times Newswire
-      API provides an up-to-the-minute stream of published articles. 
+      With the Times Newswire API, you can get links and metadata for Times' articles
+      as soon as they are published on NYTimes.com. The Times Newswire API provides
+      an up-to-the-minute stream of published articles.
   - aid: the-new-york-times:top-stories
     name: The New York Times Top Stories
     tags: []
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: 
+      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.example.com
     humanURL: https://developer.nytimes.com/docs/top-stories-product/1/overview
     properties:
@@ -164,7 +174,8 @@ tags:
   - Books
   - Movies
 type: Contract
-image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: 
+  https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 common:
   - url: https://developer.nytimes.com/get-started
@@ -179,14 +190,12 @@ created: '2023-10-06T00:00:00.000Z'
 modified: '2026-03-16'
 position: Consuming
 description: >-
-  The New York Times is one of the most well-known and respected newspapers in
-  the world. It covers a wide range of topics including news, politics, culture,
-  business, and sports. The Times is known for its in-depth reporting and
-  analysis, providing readers with comprehensive coverage of important issues
-  and events. In addition to its print publication, The New York Times has a
-  robust online presence, offering digital content to a global audience. The
-  paper is dedicated to upholding high journalistic standards and providing
-  accurate, unbiased information to its readers.
+  The New York Times is one of the most well-known and respected newspapers in the
+  world. It covers a wide range of topics including news, politics, culture, business,
+  and sports. The Times is known for its in-depth reporting and analysis, providing
+  readers with comprehensive coverage of important issues and events. In addition
+  to its print publication, The New York Times has a robust online presence, offering
+  digital content to a global audience.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

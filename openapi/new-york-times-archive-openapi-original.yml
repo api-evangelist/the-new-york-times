@@ -5,7 +5,7 @@ servers:
 info:
   description: The Archive API provides lists of NYT articles by month going back to 1851.  You can use it to build your own local database of NYT article metadata.
   termsOfService: http://developer.nytimes.com/tou
-  title: Archive API
+  title: The New York Times Archive API
   version: 1.0.0
   x-apiClientRegistration:
     url: http://developer.nytimes.com/signup
@@ -76,7 +76,7 @@ paths:
                     type: object
                 type: object
           description: The docs requested.
-      summary: Archive API
+      summary: The New York Times Archive API
       tags:
         - Archive
 components:
