@@ -234,6 +234,8 @@ paths:
                   type: array
                   items:
                     type: string
+      tags:
+        - Timestags
 components:
   securitySchemes:
     apikey:
@@ -241,3 +243,5 @@ components:
       name: api-key
       in: query
 x-original-swagger-version: "2.0"
+tags:
+  - name: Timestags

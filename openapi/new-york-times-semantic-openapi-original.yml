@@ -88,6 +88,8 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Concept'
+      tags:
+        - Name
   /search.json:
     get:
       parameters:
@@ -150,6 +152,8 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/ConceptRelation'
+      tags:
+        - Search
 components:
   schemas:
     Concept:
@@ -324,3 +328,6 @@ components:
       type: apiKey
       name: api-key
       in: query
+tags:
+  - name: Name
+  - name: Search

@@ -8,8 +8,7 @@ apis:
       - Archive
       - Months
       - Years
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.nytimes.com
     humanURL: https://developer.nytimes.com/docs/archive-product/1/overview
     properties:
@@ -25,11 +24,9 @@ apis:
     tags:
       - Articles
       - Search
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.nytimes.com
-    humanURL: 
-      https://developer.nytimes.com/docs/articlesearch-product/1/overview
+    humanURL: https://developer.nytimes.com/docs/articlesearch-product/1/overview
     properties:
       - url: https://developer.nytimes.com/docs/articlesearch-product/1/overview
         type: Documentation
@@ -41,8 +38,7 @@ apis:
   - aid: the-new-york-times:books-api
     name: The New York Times Books API
     tags: []
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.example.com
     humanURL: https://developer.nytimes.com/docs/books-product/1/overview
     properties:
@@ -56,8 +52,7 @@ apis:
   - aid: the-new-york-times:most-popular
     name: The New York Times Most Popular
     tags: []
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.nytimes.com
     humanURL: https://developer.nytimes.com/docs/most-popular-product/1/overview
     properties:
@@ -79,10 +74,8 @@ apis:
       - Reviewers
       - Reviews
       - Search
-      - Search
       - Types
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: >-
       https://api.apis.guru/v2/specs/nytimes.com/movie_reviews/2.0.0/openapi.yaml
     humanURL: https://developer.nytimes.com/docs/movie-reviews-api/1/overview
@@ -102,8 +95,7 @@ apis:
       - Search
       - Specific
       - Types
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.example.com
     humanURL: https://developer.nytimes.com/docs/semantic-api-product/1/overview
     properties:
@@ -118,10 +110,8 @@ apis:
       used as metadata by The New York Times.
   - aid: the-new-york-times:timestags-api
     name: The New York Times TimesTags API
-    tags:
-      - Tags
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    tags: []
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.example.com
     humanURL: https://developer.nytimes.com/docs/timestags-product/1/overview
     properties:
@@ -139,8 +129,7 @@ apis:
       - Content
       - Sections
       - Sources
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.example.com
     humanURL: https://developer.nytimes.com/docs/timeswire-product/1/overview
     properties:
@@ -155,8 +144,7 @@ apis:
   - aid: the-new-york-times:top-stories
     name: The New York Times Top Stories
     tags: []
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.example.com
     humanURL: https://developer.nytimes.com/docs/top-stories-product/1/overview
     properties:
@@ -169,13 +157,12 @@ apis:
       specified section (arts, business, ...).
 name: The New York Times
 tags:
-  - News
   - Articles
   - Books
   - Movies
+  - News
 type: Contract
-image: 
-  https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 common:
   - url: https://developer.nytimes.com/get-started

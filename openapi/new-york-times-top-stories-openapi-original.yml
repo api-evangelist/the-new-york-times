@@ -175,3 +175,5 @@ components:
       type: apiKey
       name: api-key
       in: query
+tags:
+  - name: Stories
