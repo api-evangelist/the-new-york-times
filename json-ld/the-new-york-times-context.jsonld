@@ -1,0 +1,55 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "nyt": "https://developer.nytimes.com/vocabulary/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Article": "schema:NewsArticle",
+    "Book": "schema:Book",
+    "Review": "schema:Review",
+    "Person": "schema:Person",
+    "Organization": "schema:Organization",
+    "Place": "schema:Place",
+
+    "web_url": { "@id": "schema:url", "@type": "@id" },
+    "abstract": "schema:abstract",
+    "headline": "schema:headline",
+    "lead_paragraph": "schema:articleBody",
+    "snippet": "schema:description",
+    "pub_date": { "@id": "schema:datePublished", "@type": "xsd:dateTime" },
+    "source": "schema:publisher",
+    "section_name": "schema:articleSection",
+    "subsection_name": "nyt:subsection",
+    "word_count": "schema:wordCount",
+    "byline": "schema:author",
+    "news_desk": "nyt:newsDesk",
+    "document_type": "schema:additionalType",
+    "type_of_material": "nyt:typeOfMaterial",
+    "print_page": "nyt:printPage",
+    "_id": "schema:identifier",
+    "keywords": "schema:keywords",
+    "multimedia": "schema:image",
+
+    "title": "schema:name",
+    "author": "schema:author",
+    "publisher": "schema:publisher",
+    "description": "schema:description",
+    "isbn10": "schema:isbn",
+    "isbn13": "schema:isbn",
+    "price": "schema:price",
+    "contributor": "schema:contributor",
+
+    "concept_name": "schema:name",
+    "concept_type": "nyt:conceptType",
+    "concept_status": "schema:status",
+    "concept_uri": "schema:url",
+    "is_times_tag": "nyt:isTimesTag",
+    "vernacular": "schema:alternateName",
+
+    "review_text": "schema:reviewBody",
+    "critics_pick": "nyt:criticsPick",
+    "opening_date": "schema:startDate",
+    "reviewer": "schema:author"
+  }
+}

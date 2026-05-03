@@ -1,0 +1,84 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "NYT Top Stories API"
+  description: "Returns articles currently on the NYTimes.com homepage and section front pages. Get the top stories for any section including arts, business, technology, and more."
+  tags:
+    - New York Times
+    - Top Stories
+    - Articles
+    - News
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      NYT_API_KEY: NYT_API_KEY
+
+capability:
+  consumes:
+    - type: http
+      namespace: nyt-top-stories
+      baseUri: https://api.nytimes.com/svc/topstories/v2
+      description: "NYT Top Stories API returning articles currently on the specified section."
+      authentication:
+        type: apikey
+        key: api-key
+        value: "{{NYT_API_KEY}}"
+        placement: query
+      resources:
+        - name: top-stories
+          path: /{section}.json
+          description: "Get top stories for a specific NYT section."
+          operations:
+            - name: get-top-stories-by-section
+              method: GET
+              description: "Get articles currently featured on the specified NYT section page."
+              inputParameters:
+                - name: section
+                  in: path
+                  type: string
+                  required: true
+                  description: "Section name: arts, business, health, home, science, technology, us, world, etc."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8126
+      namespace: nyt-top-stories-api
+      resources:
+        - path: /v1/top-stories/{section}
+          name: top-stories
+          description: "Top stories by NYT section."
+          operations:
+            - method: GET
+              name: get-top-stories-by-section
+              description: "Get top stories from the specified NYT section."
+              call: "nyt-top-stories.get-top-stories-by-section"
+              with:
+                section: "rest.section"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9126
+      namespace: nyt-top-stories-mcp
+      transport: http
+      tools:
+        - name: get-top-stories-by-section
+          description: "Get top stories currently featured on a specific NYT section page."
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "nyt-top-stories.get-top-stories-by-section"
+          with:
+            section: "tools.section"
+          outputParameters:
+            - type: object
+              mapping: "$."

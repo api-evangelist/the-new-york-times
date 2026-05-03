@@ -1,0 +1,182 @@
+vocabulary: the-new-york-times
+description: >-
+  Vocabulary and taxonomy for The New York Times APIs covering article metadata,
+  content classification, book publishing, and movie reviews.
+version: "1.0"
+created: "2026-05-03"
+modified: "2026-05-03"
+
+domains:
+  - name: Article Metadata
+    description: Terms used to classify and describe NYT articles.
+    terms:
+      - term: document_type
+        definition: "The category of document. Common values: article, multimedia, blog."
+      - term: type_of_material
+        definition: "The journalistic format. Common values: News, Op-Ed, Editorial, Review, Letter, Obituary, Analysis."
+      - term: news_desk
+        definition: "The NYT editorial desk that produced the article. Examples: Technology, Politics, Sports, Arts, Science."
+      - term: section_name
+        definition: "The primary section of NYTimes.com where the article appears."
+      - term: subsection_name
+        definition: "The subsection within the primary section."
+      - term: print_page
+        definition: "The page number in the print edition where the article appeared."
+      - term: byline
+        definition: "Attribution information identifying the author(s) of the article."
+      - term: lead_paragraph
+        definition: "The opening paragraph of the article, typically the most important information."
+      - term: abstract
+        definition: "A brief summary of the article content, usually 1-3 sentences."
+      - term: snippet
+        definition: "A short excerpt from the article body returned by the search API."
+      - term: word_count
+        definition: "Total number of words in the article body."
+      - term: pub_date
+        definition: "The date and time the article was published on NYTimes.com."
+
+  - name: Search and Facets
+    description: Terms used in article search filtering and faceting.
+    terms:
+      - term: facet
+        definition: "A metadata dimension used to categorize and filter search results."
+      - term: fq
+        definition: "Filtered query using Lucene syntax to restrict search results by field values."
+      - term: des_facet
+        definition: "Subject/descriptor facet values. Used to categorize topics (e.g., Artificial Intelligence, Climate Change)."
+      - term: geo_facet
+        definition: "Geographic location facet values (e.g., New York City, France)."
+      - term: org_facet
+        definition: "Organization facet values (e.g., Apple Inc., Congress)."
+      - term: per_facet
+        definition: "Person facet values in LastName, FirstName format (e.g., Biden, Joseph R Jr)."
+      - term: begin_date
+        definition: "Earliest publication date for search results in YYYYMMDD format."
+      - term: end_date
+        definition: "Latest publication date for search results in YYYYMMDD format."
+
+  - name: Content Sections
+    description: NYT content sections used in Top Stories and Newswire APIs.
+    terms:
+      - term: home
+        definition: "NYTimes.com homepage. Use this to get articles currently featured on the front page."
+      - term: arts
+        definition: "Arts section covering theater, music, art, dance, and cultural events."
+      - term: business
+        definition: "Business Day section covering economics, markets, and corporate news."
+      - term: health
+        definition: "Health section covering medicine, science, and wellness."
+      - term: science
+        definition: "Science section covering research, environment, and technology."
+      - term: technology
+        definition: "Technology section covering digital products, companies, and policy."
+      - term: us
+        definition: "U.S. national news section."
+      - term: world
+        definition: "International news section."
+      - term: opinion
+        definition: "Opinion section including editorials, op-eds, and letters."
+      - term: politics
+        definition: "Politics section covering government and elections."
+      - term: sports
+        definition: "Sports section."
+      - term: movies
+        definition: "Movies section covering film reviews and industry news."
+
+  - name: Semantic Concepts
+    description: Controlled vocabulary concept types used in the Semantic API.
+    terms:
+      - term: nytd_des
+        definition: "Subject/descriptor concept type. Represents topics and subjects used to classify articles."
+        examples: ["Artificial Intelligence", "Climate Change", "Elections"]
+      - term: nytd_geo
+        definition: "Geographic location concept type. Represents places at various scales."
+        examples: ["New York City", "France", "Middle East"]
+      - term: nytd_org
+        definition: "Organization concept type. Represents companies, government bodies, nonprofits."
+        examples: ["Apple Inc", "Senate", "United Nations"]
+      - term: nytd_per
+        definition: "Person concept type. Names in Last, First format."
+        examples: ["Obama, Barack", "Musk, Elon"]
+      - term: nytd_ttl
+        definition: "Creative work title concept type. Books, films, TV programs."
+        examples: ["The Great Gatsby (Book)", "Breaking Bad (TV Program)"]
+      - term: nytd_topic
+        definition: "Topic concept type for broad subject groupings."
+      - term: nytd_porg
+        definition: "Public company concept type. Publicly traded companies."
+      - term: is_times_tag
+        definition: "Boolean (0/1) indicating if this concept is used as a tag on NYTimes.com articles."
+      - term: use_count
+        definition: "Number of NYT articles tagged with this concept. Higher values indicate more frequently covered topics."
+
+  - name: Books
+    description: Terms used in the NYT Books Best Sellers API.
+    terms:
+      - term: list_name
+        definition: "Internal identifier for a Best Sellers list (e.g., hardcover-fiction, e-book-nonfiction)."
+      - term: display_name
+        definition: "Human-readable Best Sellers list name (e.g., Hardcover Fiction)."
+      - term: bestsellers_date
+        definition: "Week-ending date for the sales data reflected in the list. May predate published_date."
+      - term: published_date
+        definition: "Date the Best Sellers list was published on NYTimes.com."
+      - term: weeks_on_list
+        definition: "Total number of weeks a book has appeared on a specific list."
+      - term: rank
+        definition: "Current ranking position on the Best Sellers list."
+      - term: rank_last_week
+        definition: "Ranking position the previous week. Null if the book was not on the list."
+      - term: isbn10
+        definition: "International Standard Book Number (10 digits)."
+      - term: isbn13
+        definition: "International Standard Book Number (13 digits)."
+      - term: primary_isbn13
+        definition: "The primary 13-digit ISBN used to identify the book on the list."
+
+  - name: Movie Reviews
+    description: Terms used in the NYT Movie Reviews API.
+    terms:
+      - term: critics_pick
+        definition: "A movie selected by NYT film critics as recommended viewing. Returned when critics-pick=Y."
+      - term: opening_date
+        definition: "US theatrical release date of the film."
+      - term: publication_date
+        definition: "Date the movie review was published on NYTimes.com."
+      - term: reviewer
+        definition: "The NYT film critic who wrote the review, identified by byline."
+      - term: mpaa_rating
+        definition: "Motion Picture Association of America rating (G, PG, PG-13, R, NC-17)."
+      - term: headline
+        definition: "The headline of the movie review."
+      - term: summary_short
+        definition: "A one-sentence summary of the review."
+      - term: display_title
+        definition: "The official display title of the film as used by NYT."
+
+  - name: Most Popular
+    description: Terms for the NYT Most Popular API.
+    terms:
+      - term: time-period
+        definition: "Number of days for which to return most popular articles. Values: 1 (day), 7 (week), 30 (month)."
+      - term: section
+        definition: "NYT section to filter popular articles. Use all-sections for cross-section results."
+      - term: count_type
+        definition: "Method of popularity measurement. Values: email (most emailed), share (most shared), view (most viewed)."
+      - term: total_shares
+        definition: "Total number of social shares for most-shared articles."
+
+tags:
+  - Articles
+  - Books
+  - Best Sellers
+  - Movies
+  - Reviews
+  - Search
+  - Archive
+  - Metadata
+  - Semantic
+  - Journalism
+  - Media
+  - Publishing
+  - News

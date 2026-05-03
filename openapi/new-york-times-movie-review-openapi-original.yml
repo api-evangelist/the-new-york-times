@@ -59,7 +59,7 @@ paths:
     get:
       tags:
         - Movies
-      summary: "The New York Times Get movie critics name, bio and image."
+      summary: Get Movie Critics Name, Bio And Image
       description: |
         Get movie critics. You can either specify the reviewer name or use "all", "full-time", or "part-time".
       parameters:
@@ -97,7 +97,7 @@ paths:
     get:
       tags:
         - Movies
-      summary: The New York Times Get movie reviews.
+      summary: Get Movie Reviews
       description: |
         Get movie reviews.  Can filter to only return Critics' Picks.
         Supports ordering results by-publication-date or by-opening-date.
@@ -160,7 +160,7 @@ paths:
     get:
       tags:
         - Movies
-      summary: The New York Times Search for movie reviews.
+      summary: Search Movie Reviews
       description: |
         Search for movie reviews.  Supports filtering by Critics' Pick.
       parameters:

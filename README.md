@@ -1,177 +1,147 @@
-# The New York Times (the-new-york-times)
-The official developer area for accessing The New York Times archive, article search, books, most popular, reviews, semantic, times tags, times wire, and top stories APis.
+# The New York Times
 
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-search/news/main/_apis/new-york-times/apis.md)
+The New York Times is one of the world's most respected news organizations, providing comprehensive journalism across politics, culture, business, science, health, and the arts since 1851. The NYT Developer Network exposes a suite of RESTful APIs enabling developers to search and access NYT articles, best-seller book lists, movie reviews, semantic metadata, top stories, and popular content. All APIs require an API key obtained from the NYT Developer Portal.
 
-## Scope
+**Website:** [nytimes.com](https://nytimes.com)  
+**Developer Portal:** [developer.nytimes.com](https://developer.nytimes.com)  
+**GitHub:** [github.com/nytimes](https://github.com/nytimes)
 
-
-## Tags:
-
- - News, Articles, Books, Movies
-
-## Timestamps
-
-- **Created:** 2023-10-06 
-- **Modified:** 2024-12-21 
+---
 
 ## APIs
 
-### Archive API
-The Archive API returns an array of NYT articles for a given month, going back to 1851. Its response fields are the same as the Article Search API. 
+| API | Description | Base URL |
+|-----|-------------|----------|
+| [Archive API](https://developer.nytimes.com/docs/archive-product/1/overview) | Articles by month going back to 1851 | `https://api.nytimes.com/svc/archive/v1` |
+| [Article Search API](https://developer.nytimes.com/docs/articlesearch-product/1/overview) | Full-text article search with facets | `https://api.nytimes.com/svc/search/v2` |
+| [Books API](https://developer.nytimes.com/docs/books-product/1/overview) | Best Sellers lists and book reviews | `https://api.nytimes.com/svc/books/v3` |
+| [Most Popular API](https://developer.nytimes.com/docs/most-popular-product/1/overview) | Most emailed, shared, and viewed articles | `https://api.nytimes.com/svc/mostpopular/v2` |
+| [Movie Reviews API](https://developer.nytimes.com/docs/movie-reviews-api/1/overview) | Movie reviews and critics' picks | `https://api.nytimes.com/svc/movies/v2` |
+| [Semantic API](https://developer.nytimes.com/docs/semantic-api-product/1/overview) | Controlled vocabulary of entities and concepts | `https://api.nytimes.com/svc/semantic/v2` |
+| [TimesTags API](https://developer.nytimes.com/docs/timestags-product/1/overview) | Tag autocomplete (deprecated, use Semantic API) | `https://api.nytimes.com/svc/suggest/v1` |
+| [Times Newswire API](https://developer.nytimes.com/docs/timeswire-product/1/overview) | Real-time article stream as articles are published | `https://api.nytimes.com/svc/news/v3` |
+| [Top Stories API](https://developer.nytimes.com/docs/top-stories-product/1/overview) | Articles currently featured on section pages | `https://api.nytimes.com/svc/topstories/v2` |
 
-**Human URL:** [https://developer.nytimes.com/docs/archive-product/1/overview](https://developer.nytimes.com/docs/archive-product/1/overview)
+---
 
-**Base URL:** [https://api.nytimes.com](https://api.nytimes.com)
+## OpenAPI Specifications
 
+| Spec | File |
+|------|------|
+| Archive API | [openapi/new-york-times-archive-openapi-original.yml](openapi/new-york-times-archive-openapi-original.yml) |
+| Article Search API | [openapi/new-york-times-article-search-openapi-original.yml](openapi/new-york-times-article-search-openapi-original.yml) |
+| Books API | [openapi/new-york-times-books-openapi-original.yml](openapi/new-york-times-books-openapi-original.yml) |
+| Most Popular API | [openapi/new-york-times-most-popular-openapi-original.yml](openapi/new-york-times-most-popular-openapi-original.yml) |
+| Movie Reviews API | [openapi/new-york-times-movie-review-openapi-original.yml](openapi/new-york-times-movie-review-openapi-original.yml) |
+| Semantic API | [openapi/new-york-times-semantic-openapi-original.yml](openapi/new-york-times-semantic-openapi-original.yml) |
+| TimesTags API | [openapi/new-york-times-times-tags-openapi-original.yml](openapi/new-york-times-times-tags-openapi-original.yml) |
+| Times Newswire API | [openapi/new-york-times-times-newswire-openapi-original.yml](openapi/new-york-times-times-newswire-openapi-original.yml) |
+| Top Stories API | [openapi/new-york-times-top-stories-openapi-original.yml](openapi/new-york-times-top-stories-openapi-original.yml) |
 
-#### Tags:
+---
 
- - Archive, Months, Years
+## Naftiko Capabilities
 
-#### Properties
+Capabilities are organized in two layers: shared per-API definitions and workflow-oriented compositions.
 
-- [Documentation](https://developer.nytimes.com/docs/archive-product/1/overview)
-- [OpenAPI](openapi/new-york-times-archive-openapi-original.yml)
-### Article Search API
-Use the Article Search API to look up articles by keyword. You can refine your search using filters and facets.
+### Workflow Capabilities
 
-**Human URL:** [https://developer.nytimes.com/docs/articlesearch-product/1/overview](https://developer.nytimes.com/docs/articlesearch-product/1/overview)
+| Workflow | File | Description |
+|----------|------|-------------|
+| Article Research | [capabilities/article-research.yaml](capabilities/article-research.yaml) | Article search + archive + top stories + newswire for journalists and researchers |
+| Content Discovery | [capabilities/content-discovery.yaml](capabilities/content-discovery.yaml) | Most popular articles + books best sellers + movie reviews for media analysis |
+| Metadata Enrichment | [capabilities/metadata-enrichment.yaml](capabilities/metadata-enrichment.yaml) | Semantic concept lookup and search for entity resolution and knowledge graphs |
 
-**Base URL:** [https://api.nytimes.com](https://api.nytimes.com)
+### Shared Per-API Definitions
 
+| API | File |
+|-----|------|
+| Archive API | [capabilities/shared/archive.yaml](capabilities/shared/archive.yaml) |
+| Article Search API | [capabilities/shared/article-search.yaml](capabilities/shared/article-search.yaml) |
+| Books API | [capabilities/shared/books.yaml](capabilities/shared/books.yaml) |
+| Most Popular API | [capabilities/shared/most-popular.yaml](capabilities/shared/most-popular.yaml) |
+| Movie Reviews API | [capabilities/shared/movie-reviews.yaml](capabilities/shared/movie-reviews.yaml) |
+| Semantic API | [capabilities/shared/semantic.yaml](capabilities/shared/semantic.yaml) |
+| Top Stories API | [capabilities/shared/top-stories.yaml](capabilities/shared/top-stories.yaml) |
+| Times Newswire API | [capabilities/shared/times-newswire.yaml](capabilities/shared/times-newswire.yaml) |
 
-#### Tags:
+---
 
- - Articles, Search
+## Spectral Rules
 
-#### Properties
+| Ruleset | File |
+|---------|------|
+| NYT API Rules | [rules/new-york-times-rules.yml](rules/new-york-times-rules.yml) |
 
-- [Documentation](https://developer.nytimes.com/docs/articlesearch-product/1/overview)
-- [OpenAPI](openapi/new-york-times-article-search-openapi-original.yml)
-### Books API
-The Books API provides information about book reviews and The New York Times Best Sellers lists.
+---
 
-**Human URL:** [https://developer.nytimes.com/docs/books-product/1/overview](https://developer.nytimes.com/docs/books-product/1/overview)
+## JSON Schemas
 
-**Base URL:** [https://api.example.com](https://api.example.com)
+| Schema | File |
+|--------|------|
+| Article | [json-schema/new-york-times-article-schema.json](json-schema/new-york-times-article-schema.json) |
+| Best Seller Book | [json-schema/new-york-times-book-schema.json](json-schema/new-york-times-book-schema.json) |
 
+---
 
-#### Tags:
+## JSON Structure
 
- - No Tags
+| Structure | File |
+|-----------|------|
+| Article | [json-structure/new-york-times-article-structure.json](json-structure/new-york-times-article-structure.json) |
 
-#### Properties
+---
 
-- [Documentation](https://developer.nytimes.com/docs/books-product/1/overview)
-- [OpenAPI](openapi/new-york-times-books-openapi-original.yml)
-### Most Popular
-Provides services for getting the most popular articles on NYTimes.com based on emails, shares, or views.
+## JSON-LD
 
-**Human URL:** [https://developer.nytimes.com/docs/most-popular-product/1/overview](https://developer.nytimes.com/docs/most-popular-product/1/overview)
+| Context | File |
+|---------|------|
+| NYT Context | [json-ld/the-new-york-times-context.jsonld](json-ld/the-new-york-times-context.jsonld) |
 
-**Base URL:** [https://api.nytimes.com](https://api.nytimes.com)
+---
 
+## Examples
 
-#### Tags:
+| Example | File |
+|---------|------|
+| Search Articles | [examples/new-york-times-search-articles-example.json](examples/new-york-times-search-articles-example.json) |
+| Top Stories | [examples/new-york-times-top-stories-example.json](examples/new-york-times-top-stories-example.json) |
 
- - No Tags
+---
 
-#### Properties
+## Vocabulary
 
-- [Documentation](https://developer.nytimes.com/docs/most-popular-product/1/overview)
-- [OpenAPI](openapi/new-york-times-most-popular-openapi-original.yml)
-### Movie Reviews API
-As an alternative, use the Article Search API to get New York Times movie reviews using the following filter query.
+| Vocabulary | File |
+|------------|------|
+| NYT Vocabulary | [vocabulary/the-new-york-times-vocabulary.yml](vocabulary/the-new-york-times-vocabulary.yml) |
 
-**Human URL:** [https://developer.nytimes.com/docs/movie-reviews-api/1/overview](https://developer.nytimes.com/docs/movie-reviews-api/1/overview)
+---
 
-**Base URL:** [https://api.apis.guru/v2/specs/nytimes.com/movie_reviews/2.0.0/openapi.yaml](https://api.apis.guru/v2/specs/nytimes.com/movie_reviews/2.0.0/openapi.yaml)
+## Authentication
 
+All NYT APIs use API key authentication passed as a query parameter:
 
-#### Tags:
+```
+?api-key=YOUR_API_KEY
+```
 
- - Bio, Critics, Images, Movie, Names, Reviewers, Reviews, Search, Search, Types
+Get your API key at [developer.nytimes.com/accounts/create](https://developer.nytimes.com/accounts/create).
 
-#### Properties
+---
 
-- [Documentation](https://example.com/documentation)
-- [OpenAPI](openapi/new-york-times-movie-review-openapi-original.yml)
-### Semantic API
-The Semantic API complements the Articles API. With the Semantic API, you get access to the long list of people, places, organizations and other locations, entities and descriptors that make up the controlled vocabulary used as metadata by The New York Times.
+## SDKs and Clients
 
-**Human URL:** [https://developer.nytimes.com/docs/semantic-api-product/1/overview](https://developer.nytimes.com/docs/semantic-api-product/1/overview)
+- [Times Wire Ruby Client](https://github.com/nytimes/times_wire) — Ruby client for the Times Newswire API
+- [NYT Campaign Finance Python Client](https://github.com/nytimes/nytcampfin) — Python client for the Campaign Finance API
+- [Public API Specs](https://github.com/nytimes/public_api_specs) — Official OpenAPI specifications from NYT
 
-**Base URL:** [https://api.example.com](https://api.example.com)
-
-
-#### Tags:
-
- - Concepts, Names, Search, Specific, Types
-
-#### Properties
-
-- [Documentation](https://developer.nytimes.com/docs/semantic-api-product/1/overview)
-- [OpenAPI](openapi/new-york-times-semantic-openapi-original.yml)
-### TimesTags API
-With the TimesTags API, you can mine the riches of the New York Times tag set. The TimesTags service matches your query to the controlled vocabularies that fuel NYTimes.com metadata. 
-
-**Human URL:** [https://developer.nytimes.com/docs/timestags-product/1/overview](https://developer.nytimes.com/docs/timestags-product/1/overview)
-
-**Base URL:** [https://api.example.com](https://api.example.com)
-
-
-#### Tags:
-
- - Tags
-
-#### Properties
-
-- [Documentation](https://developer.nytimes.com/docs/timestags-product/1/overview)
-- [OpenAPI](openapi/new-york-times-times-tags-openapi-original.yml)
-### Times Newswire API
-With the Times Newswire API, you can get links and metadata for Times' articles as soon as they are published on NYTimes.com. The Times Newswire API provides an up-to-the-minute stream of published articles. 
-
-**Human URL:** [https://developer.nytimes.com/docs/timeswire-product/1/overview](https://developer.nytimes.com/docs/timeswire-product/1/overview)
-
-**Base URL:** [https://api.example.com](https://api.example.com)
-
-
-#### Tags:
-
- - Content, Sections, Sources
-
-#### Properties
-
-- [Documentation](https://developer.nytimes.com/docs/timeswire-product/1/overview)
-- [OpenAPI](openapi/new-york-times-times-newswire-openapi-original.yml)
-### Top Stories
-The Top Stories API returns an array of articles currently on the specified section (arts, business, ...).
-
-**Human URL:** [https://developer.nytimes.com/docs/top-stories-product/1/overview](https://developer.nytimes.com/docs/top-stories-product/1/overview)
-
-**Base URL:** [https://api.example.com](https://api.example.com)
-
-
-#### Tags:
-
- - No Tags
-
-#### Properties
-
-- [Documentation](https://developer.nytimes.com/docs/top-stories-product/1/overview)
-- [OpenAPI](openapi/new-york-times-top-stories-openapi-original.ymll)
-
-## Common Properties
-
-- [Getting Started](https://developer.nytimes.com/get-started)
-- [Signup](https://developer.nytimes.com/accounts/create)
-- [Login](https://developer.nytimes.com/accounts/login)
-- [TermsOfService](https://developer.nytimes.com/terms)
+---
 
 ## Maintainers
 
-**FN:** API Evangelist
+**FN:** Kin Lane  
+**Email:** kin@apievangelist.com
 
-**Email:** info@apievangelist.com
+---
 
+*Profile generated 2026-05-03*

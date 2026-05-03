@@ -1,0 +1,49 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.nytimes.com/svc/topstories/v2/technology.json",
+    "params": {
+      "api-key": "YOUR_API_KEY"
+    }
+  },
+  "response": {
+    "status": "OK",
+    "copyright": "Copyright (c) 2024 The New York Times Company. All Rights Reserved.",
+    "section": "Technology",
+    "last_updated": "2024-05-01T09:00:00-05:00",
+    "num_results": 35,
+    "results": [
+      {
+        "section": "Technology",
+        "subsection": "Artificial Intelligence",
+        "title": "How AI Is Reshaping the Workplace",
+        "abstract": "New research shows that artificial intelligence tools are changing how workers spend their time.",
+        "url": "https://www.nytimes.com/2024/05/01/technology/ai-workplace-productivity.html",
+        "uri": "nyt://article/a1b2c3d4-5678-90ab-cdef-123456789012",
+        "byline": "By EMILY CHANG",
+        "item_type": "Article",
+        "updated_date": "2024-05-01T08:30:00-05:00",
+        "created_date": "2024-05-01T06:00:00-05:00",
+        "published_date": "2024-05-01T06:00:00-05:00",
+        "kicker": "Artificial Intelligence",
+        "des_facet": ["Artificial Intelligence", "Labor and Jobs", "Productivity"],
+        "org_facet": ["OpenAI", "Microsoft Corporation"],
+        "per_facet": [],
+        "geo_facet": [],
+        "multimedia": [
+          {
+            "url": "https://static01.nyt.com/images/2024/05/01/technology/ai-workplace/ai-workplace-superJumbo.jpg",
+            "format": "Super Jumbo",
+            "height": 2048,
+            "width": 3072,
+            "type": "image",
+            "subtype": "photo",
+            "caption": "Workers using AI tools at a tech company.",
+            "copyright": "Emily Chang/The New York Times"
+          }
+        ],
+        "short_url": "https://nyti.ms/3xyzAbc"
+      }
+    ]
+  }
+}

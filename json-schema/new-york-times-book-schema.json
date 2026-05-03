@@ -1,0 +1,126 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/the-new-york-times/main/json-schema/new-york-times-book-schema.json",
+  "title": "NYT Best Seller Book",
+  "description": "A book appearing on an NYT Best Sellers list.",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Title of the book."
+    },
+    "author": {
+      "type": "string",
+      "description": "Primary author of the book."
+    },
+    "contributor": {
+      "type": "string",
+      "description": "All contributors to the book including author and illustrator."
+    },
+    "contributor_note": {
+      "type": "string",
+      "description": "Additional notes on contributions."
+    },
+    "publisher": {
+      "type": "string",
+      "description": "Standardized publisher name."
+    },
+    "description": {
+      "type": "string",
+      "description": "Brief description of the book."
+    },
+    "price": {
+      "type": "number",
+      "description": "Publisher's list price including decimal point."
+    },
+    "age_group": {
+      "type": "string",
+      "description": "Target age group for the book."
+    },
+    "isbns": {
+      "type": "array",
+      "description": "ISBN-10 and ISBN-13 identifiers for the book.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "isbn10": {
+            "type": "string",
+            "description": "10-digit ISBN.",
+            "pattern": "^[0-9X]{10}$"
+          },
+          "isbn13": {
+            "type": "string",
+            "description": "13-digit ISBN.",
+            "pattern": "^[0-9]{13}$"
+          }
+        }
+      }
+    },
+    "ranks_history": {
+      "type": "array",
+      "description": "Historical ranking data across Best Sellers lists.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "list_name": {
+            "type": "string",
+            "description": "Internal name of the Best Sellers list."
+          },
+          "display_name": {
+            "type": "string",
+            "description": "Display name of the Best Sellers list."
+          },
+          "bestsellers_date": {
+            "type": "string",
+            "format": "date",
+            "description": "Week-ending date for the sales data."
+          },
+          "published_date": {
+            "type": "string",
+            "format": "date",
+            "description": "Date the list was published on NYTimes.com."
+          },
+          "rank": {
+            "type": "integer",
+            "description": "Ranking on the list."
+          },
+          "weeks_on_list": {
+            "type": "integer",
+            "description": "Total weeks on the list."
+          }
+        }
+      }
+    },
+    "reviews": {
+      "type": "array",
+      "description": "Links to NYT reviews of the book.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "book_review_link": {
+            "type": "string",
+            "format": "uri",
+            "description": "Link to the full book review."
+          },
+          "article_chapter_link": {
+            "type": "string",
+            "format": "uri",
+            "description": "Link to a related article or chapter."
+          },
+          "first_chapter_link": {
+            "type": "string",
+            "format": "uri",
+            "description": "Link to a first chapter excerpt."
+          },
+          "sunday_review_link": {
+            "type": "string",
+            "format": "uri",
+            "description": "Link to a Sunday Book Review item."
+          }
+        }
+      }
+    }
+  },
+  "required": ["title", "author"],
+  "additionalProperties": true
+}

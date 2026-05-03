@@ -1,0 +1,91 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "NYT Archive API"
+  description: "Returns arrays of NYT articles for a given month, going back to 1851. Used to build local databases of NYT article metadata."
+  tags:
+    - New York Times
+    - Archive
+    - Articles
+    - History
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      NYT_API_KEY: NYT_API_KEY
+
+capability:
+  consumes:
+    - type: http
+      namespace: nyt-archive
+      baseUri: https://api.nytimes.com/svc/archive/v1
+      description: "NYT Archive API returning all articles published in a given month."
+      authentication:
+        type: apikey
+        key: api-key
+        value: "{{NYT_API_KEY}}"
+        placement: query
+      resources:
+        - name: archive
+          path: /{year}/{month}.json
+          description: "Get all NYT articles published in a specific year and month."
+          operations:
+            - name: get-articles-by-month
+              method: GET
+              description: "Returns all NYT articles for a given year and month going back to 1851."
+              inputParameters:
+                - name: year
+                  in: path
+                  type: integer
+                  required: true
+                  description: "The year (e.g. 2016)."
+                - name: month
+                  in: path
+                  type: integer
+                  required: true
+                  description: "The month number (e.g. 1 for January)."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8120
+      namespace: nyt-archive-api
+      resources:
+        - path: /v1/archive/{year}/{month}
+          name: archive
+          description: "NYT article archive by year and month."
+          operations:
+            - method: GET
+              name: get-articles-by-month
+              description: "Get all NYT articles published in the specified year and month."
+              call: "nyt-archive.get-articles-by-month"
+              with:
+                year: "rest.year"
+                month: "rest.month"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9120
+      namespace: nyt-archive-mcp
+      transport: http
+      tools:
+        - name: get-articles-by-month
+          description: "Retrieve all NYT articles published in a specific year and month."
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "nyt-archive.get-articles-by-month"
+          with:
+            year: "tools.year"
+            month: "tools.month"
+          outputParameters:
+            - type: object
+              mapping: "$."

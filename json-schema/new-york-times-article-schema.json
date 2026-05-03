@@ -1,0 +1,176 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/the-new-york-times/main/json-schema/new-york-times-article-schema.json",
+  "title": "NYT Article",
+  "description": "A New York Times article as returned by the Article Search API and Archive API.",
+  "type": "object",
+  "properties": {
+    "_id": {
+      "type": "string",
+      "description": "Unique identifier for the article."
+    },
+    "web_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL of the article on NYTimes.com."
+    },
+    "snippet": {
+      "type": "string",
+      "description": "A short excerpt from the article body."
+    },
+    "lead_paragraph": {
+      "type": "string",
+      "description": "The opening paragraph of the article."
+    },
+    "abstract": {
+      "type": "string",
+      "description": "A brief summary of the article content."
+    },
+    "print_page": {
+      "type": "string",
+      "description": "Page in the print edition where the article appeared."
+    },
+    "source": {
+      "type": "string",
+      "description": "The publication source (e.g., The New York Times)."
+    },
+    "headline": {
+      "type": "object",
+      "description": "Article headline information.",
+      "properties": {
+        "main": {
+          "type": "string",
+          "description": "The main headline text."
+        },
+        "kicker": {
+          "type": "string",
+          "description": "The kicker text above the main headline."
+        },
+        "print_headline": {
+          "type": "string",
+          "description": "Headline used in print edition."
+        }
+      }
+    },
+    "keywords": {
+      "type": "array",
+      "description": "Keywords associated with the article.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Keyword field name (e.g., subject, persons, glocations)."
+          },
+          "value": {
+            "type": "string",
+            "description": "Keyword value."
+          },
+          "rank": {
+            "type": "integer",
+            "description": "Rank of the keyword by relevance."
+          }
+        }
+      }
+    },
+    "pub_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Publication date and time of the article."
+    },
+    "document_type": {
+      "type": "string",
+      "description": "Type of document (e.g., article, multimedia)."
+    },
+    "news_desk": {
+      "type": "string",
+      "description": "NYT news desk that produced the article."
+    },
+    "section_name": {
+      "type": "string",
+      "description": "Section the article appears in (e.g., Technology, Arts)."
+    },
+    "subsection_name": {
+      "type": "string",
+      "description": "Subsection the article appears in."
+    },
+    "byline": {
+      "type": "object",
+      "description": "Byline information for the article.",
+      "properties": {
+        "original": {
+          "type": "string",
+          "description": "Full byline text (e.g., By JOHN SMITH)."
+        },
+        "person": {
+          "type": "array",
+          "description": "Structured contributor information.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "firstname": { "type": "string" },
+              "lastname": { "type": "string" },
+              "role": { "type": "string" }
+            }
+          }
+        },
+        "organization": {
+          "type": "string",
+          "description": "Organization name for wire service articles."
+        }
+      }
+    },
+    "type_of_material": {
+      "type": "string",
+      "description": "Type of material (e.g., News, Op-Ed, Review)."
+    },
+    "word_count": {
+      "type": "integer",
+      "description": "Number of words in the article."
+    },
+    "multimedia": {
+      "type": "array",
+      "description": "Multimedia assets associated with the article.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL of the multimedia asset."
+          },
+          "format": {
+            "type": "string",
+            "description": "Format descriptor (e.g., Standard Thumbnail, Large)."
+          },
+          "height": {
+            "type": "integer",
+            "description": "Height in pixels."
+          },
+          "width": {
+            "type": "integer",
+            "description": "Width in pixels."
+          },
+          "type": {
+            "type": "string",
+            "description": "Media type (e.g., image, video)."
+          },
+          "subtype": {
+            "type": "string",
+            "description": "Media subtype (e.g., photo, illustration)."
+          },
+          "caption": {
+            "type": "string",
+            "description": "Caption for the media asset."
+          },
+          "copyright": {
+            "type": "string",
+            "description": "Copyright information for the media asset."
+          }
+        }
+      }
+    }
+  },
+  "required": ["_id", "web_url", "pub_date"],
+  "additionalProperties": true
+}

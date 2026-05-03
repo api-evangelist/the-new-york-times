@@ -1,0 +1,191 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "NYT Most Popular API"
+  description: "Get lists of the most emailed, shared, and viewed NYT articles by section and time period."
+  tags:
+    - New York Times
+    - Popular
+    - Articles
+    - Trending
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      NYT_API_KEY: NYT_API_KEY
+
+capability:
+  consumes:
+    - type: http
+      namespace: nyt-most-popular
+      baseUri: https://api.nytimes.com/svc/mostpopular/v2
+      description: "NYT Most Popular API returning the most emailed, shared, and viewed articles."
+      authentication:
+        type: apikey
+        key: api-key
+        value: "{{NYT_API_KEY}}"
+        placement: query
+      resources:
+        - name: most-emailed
+          path: /mostemailed/{section}/{time-period}.json
+          description: "Get the most emailed NYT articles by section and time period."
+          operations:
+            - name: get-most-emailed
+              method: GET
+              description: "Get most emailed articles for a section over a time period."
+              inputParameters:
+                - name: section
+                  in: path
+                  type: string
+                  required: true
+                  description: "Section name (e.g., Technology, Arts) or all-sections."
+                - name: time-period
+                  in: path
+                  type: string
+                  required: true
+                  description: "Time period: 1 (day), 7 (week), or 30 (month)."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: most-shared
+          path: /mostshared/{section}/{time-period}.json
+          description: "Get the most shared NYT articles by section and time period."
+          operations:
+            - name: get-most-shared
+              method: GET
+              description: "Get most shared articles for a section over a time period."
+              inputParameters:
+                - name: section
+                  in: path
+                  type: string
+                  required: true
+                  description: "Section name (e.g., Technology, Arts) or all-sections."
+                - name: time-period
+                  in: path
+                  type: string
+                  required: true
+                  description: "Time period: 1 (day), 7 (week), or 30 (month)."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: most-viewed
+          path: /mostviewed/{section}/{time-period}.json
+          description: "Get the most viewed NYT articles by section and time period."
+          operations:
+            - name: get-most-viewed
+              method: GET
+              description: "Get most viewed articles for a section over a time period."
+              inputParameters:
+                - name: section
+                  in: path
+                  type: string
+                  required: true
+                  description: "Section name (e.g., Technology, Arts) or all-sections."
+                - name: time-period
+                  in: path
+                  type: string
+                  required: true
+                  description: "Time period: 1 (day), 7 (week), or 30 (month)."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8123
+      namespace: nyt-most-popular-api
+      resources:
+        - path: /v1/most-emailed/{section}/{time-period}
+          name: most-emailed
+          description: "Most emailed NYT articles."
+          operations:
+            - method: GET
+              name: get-most-emailed
+              description: "Get most emailed articles by section and time period."
+              call: "nyt-most-popular.get-most-emailed"
+              with:
+                section: "rest.section"
+                time-period: "rest.time-period"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/most-shared/{section}/{time-period}
+          name: most-shared
+          description: "Most shared NYT articles."
+          operations:
+            - method: GET
+              name: get-most-shared
+              description: "Get most shared articles by section and time period."
+              call: "nyt-most-popular.get-most-shared"
+              with:
+                section: "rest.section"
+                time-period: "rest.time-period"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/most-viewed/{section}/{time-period}
+          name: most-viewed
+          description: "Most viewed NYT articles."
+          operations:
+            - method: GET
+              name: get-most-viewed
+              description: "Get most viewed articles by section and time period."
+              call: "nyt-most-popular.get-most-viewed"
+              with:
+                section: "rest.section"
+                time-period: "rest.time-period"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9123
+      namespace: nyt-most-popular-mcp
+      transport: http
+      tools:
+        - name: get-most-emailed
+          description: "Get the most emailed NYT articles by section and time period."
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "nyt-most-popular.get-most-emailed"
+          with:
+            section: "tools.section"
+            time-period: "tools.time-period"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-most-shared
+          description: "Get the most shared NYT articles by section and time period."
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "nyt-most-popular.get-most-shared"
+          with:
+            section: "tools.section"
+            time-period: "tools.time-period"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-most-viewed
+          description: "Get the most viewed NYT articles by section and time period."
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "nyt-most-popular.get-most-viewed"
+          with:
+            section: "tools.section"
+            time-period: "tools.time-period"
+          outputParameters:
+            - type: object
+              mapping: "$."

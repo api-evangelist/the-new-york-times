@@ -1,0 +1,124 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "NYT Article Search API"
+  description: "Search New York Times articles from 1851 to today. Filter by keyword, date range, and facets including section, source, and document type."
+  tags:
+    - New York Times
+    - Articles
+    - Search
+    - Keywords
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      NYT_API_KEY: NYT_API_KEY
+
+capability:
+  consumes:
+    - type: http
+      namespace: nyt-article-search
+      baseUri: https://api.nytimes.com/svc/search/v2
+      description: "NYT Article Search API for searching articles by keyword, date range, and facets."
+      authentication:
+        type: apikey
+        key: api-key
+        value: "{{NYT_API_KEY}}"
+        placement: query
+      resources:
+        - name: articles
+          path: /articlesearch.json
+          description: "Search NYT articles by keyword with filtering and faceting."
+          operations:
+            - name: search-articles
+              method: GET
+              description: "Search NYT articles using keyword, filters, and facets."
+              inputParameters:
+                - name: q
+                  in: query
+                  type: string
+                  required: false
+                  description: "Search query term. Searched against article body, headline, and byline."
+                - name: fq
+                  in: query
+                  type: string
+                  required: false
+                  description: "Filtered search query using standard Lucene syntax."
+                - name: begin_date
+                  in: query
+                  type: string
+                  required: false
+                  description: "Restricts results to articles published on or after this date (YYYYMMDD)."
+                - name: end_date
+                  in: query
+                  type: string
+                  required: false
+                  description: "Restricts results to articles published on or before this date (YYYYMMDD)."
+                - name: sort
+                  in: query
+                  type: string
+                  required: false
+                  description: "Sort results by relevance (default) or pub_date. Values: newest, oldest."
+                - name: page
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Page of results (0-10, each page = 10 results)."
+                - name: facet_field
+                  in: query
+                  type: string
+                  required: false
+                  description: "Comma-delimited list of facet fields to include in the response."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8121
+      namespace: nyt-article-search-api
+      resources:
+        - path: /v1/articles
+          name: articles
+          description: "Search NYT articles by keyword, date range, and facets."
+          operations:
+            - method: GET
+              name: search-articles
+              description: "Search NYT articles using keyword, filters, and facets."
+              call: "nyt-article-search.search-articles"
+              with:
+                q: "rest.q"
+                fq: "rest.fq"
+                begin_date: "rest.begin_date"
+                end_date: "rest.end_date"
+                sort: "rest.sort"
+                page: "rest.page"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9121
+      namespace: nyt-article-search-mcp
+      transport: http
+      tools:
+        - name: search-articles
+          description: "Search NYT articles using keyword queries, date ranges, and facet filters."
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "nyt-article-search.search-articles"
+          with:
+            q: "tools.q"
+            fq: "tools.fq"
+            begin_date: "tools.begin_date"
+            end_date: "tools.end_date"
+            sort: "tools.sort"
+            page: "tools.page"
+          outputParameters:
+            - type: object
+              mapping: "$."

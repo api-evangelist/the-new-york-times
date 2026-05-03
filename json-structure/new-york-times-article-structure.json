@@ -1,0 +1,73 @@
+{
+  "name": "NYT Article",
+  "description": "Structure of an NYT article as returned by the Article Search and Archive APIs.",
+  "fields": [
+    { "name": "_id", "type": "string", "required": true, "description": "Unique article identifier." },
+    { "name": "web_url", "type": "string (uri)", "required": true, "description": "Article URL on NYTimes.com." },
+    { "name": "abstract", "type": "string", "required": false, "description": "Brief article summary." },
+    { "name": "snippet", "type": "string", "required": false, "description": "Short body excerpt." },
+    { "name": "lead_paragraph", "type": "string", "required": false, "description": "Opening paragraph." },
+    { "name": "print_page", "type": "string", "required": false, "description": "Print edition page number." },
+    { "name": "source", "type": "string", "required": false, "description": "Publication source name." },
+    {
+      "name": "headline",
+      "type": "object",
+      "required": false,
+      "description": "Article headline information.",
+      "fields": [
+        { "name": "main", "type": "string", "description": "Primary headline text." },
+        { "name": "kicker", "type": "string", "description": "Kicker text above the headline." },
+        { "name": "print_headline", "type": "string", "description": "Print edition headline." }
+      ]
+    },
+    {
+      "name": "byline",
+      "type": "object",
+      "required": false,
+      "description": "Author/contributor information.",
+      "fields": [
+        { "name": "original", "type": "string", "description": "Full byline string." },
+        { "name": "organization", "type": "string", "description": "Wire service organization." },
+        { "name": "person", "type": "array", "description": "Structured contributor list." }
+      ]
+    },
+    {
+      "name": "keywords",
+      "type": "array",
+      "required": false,
+      "description": "Controlled vocabulary tags on the article.",
+      "items": {
+        "fields": [
+          { "name": "name", "type": "string", "description": "Keyword type (subject, persons, glocations)." },
+          { "name": "value", "type": "string", "description": "Keyword value." },
+          { "name": "rank", "type": "integer", "description": "Relevance rank." }
+        ]
+      }
+    },
+    { "name": "pub_date", "type": "string (date-time)", "required": true, "description": "Publication timestamp." },
+    { "name": "document_type", "type": "string", "required": false, "description": "Document category." },
+    { "name": "news_desk", "type": "string", "required": false, "description": "NYT editorial desk." },
+    { "name": "section_name", "type": "string", "required": false, "description": "Primary section." },
+    { "name": "subsection_name", "type": "string", "required": false, "description": "Subsection." },
+    { "name": "type_of_material", "type": "string", "required": false, "description": "Content type." },
+    { "name": "word_count", "type": "integer", "required": false, "description": "Word count." },
+    {
+      "name": "multimedia",
+      "type": "array",
+      "required": false,
+      "description": "Associated media assets.",
+      "items": {
+        "fields": [
+          { "name": "url", "type": "string (uri)", "description": "Media asset URL." },
+          { "name": "type", "type": "string", "description": "Media type (image, video)." },
+          { "name": "subtype", "type": "string", "description": "Media subtype (photo, illustration)." },
+          { "name": "format", "type": "string", "description": "Format descriptor." },
+          { "name": "height", "type": "integer", "description": "Height in pixels." },
+          { "name": "width", "type": "integer", "description": "Width in pixels." },
+          { "name": "caption", "type": "string", "description": "Media caption." },
+          { "name": "copyright", "type": "string", "description": "Copyright info." }
+        ]
+      }
+    }
+  ]
+}

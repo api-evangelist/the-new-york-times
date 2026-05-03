@@ -1,0 +1,124 @@
+extends: spectral:oas
+rules:
+
+  # NYT APIs use api-key as a query parameter — enforce that security scheme exists
+  nyt-api-key-security-scheme:
+    description: All NYT API operations must reference an apiKey security scheme named api-key or apikey.
+    message: "Operation must use the NYT api-key security scheme."
+    severity: warn
+    given: "$.paths.*.*"
+    then:
+      function: truthy
+      field: security
+
+  # NYT summaries must use Title Case
+  nyt-operation-summary-title-case:
+    description: Operation summaries must use Title Case.
+    message: "Summary '{{value}}' should use Title Case."
+    severity: warn
+    given: "$.paths.*.*.summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][^a-z]*([A-Z][^A-Z]*)*"
+
+  # All operations should have a summary
+  nyt-operation-summary-exists:
+    description: All NYT API operations must have a summary field.
+    message: "Operation is missing a summary."
+    severity: error
+    given: "$.paths.*.*"
+    then:
+      function: truthy
+      field: summary
+
+  # All operations should have tags
+  nyt-operation-tags-exist:
+    description: All NYT API operations must have at least one tag.
+    message: "Operation must include at least one tag."
+    severity: warn
+    given: "$.paths.*.*"
+    then:
+      function: truthy
+      field: tags
+
+  # Responses must include a 200 response
+  nyt-response-200-exists:
+    description: All NYT API operations must define a 200 success response.
+    message: "Operation must define a 200 response."
+    severity: error
+    given: "$.paths.*.*.responses"
+    then:
+      function: truthy
+      field: "200"
+
+  # Responses must include application/json content type
+  nyt-response-json-content:
+    description: 200 responses should return application/json content.
+    message: "200 response should include application/json content type."
+    severity: warn
+    given: "$.paths.*.*.responses.200.content"
+    then:
+      function: truthy
+      field: "application/json"
+
+  # Paths must end with .json suffix (NYT convention)
+  nyt-path-json-suffix:
+    description: NYT API paths must end with the .json format suffix.
+    message: "Path '{{value}}' must end with .json or a format path parameter."
+    severity: hint
+    given: "$.paths"
+    then:
+      function: pattern
+      functionOptions:
+        match: ".*(\\.json|\\{format\\}).*"
+
+  # Info title must be set
+  nyt-info-title-exists:
+    description: API info title must be set.
+    message: "API info.title is required."
+    severity: error
+    given: "$.info"
+    then:
+      function: truthy
+      field: title
+
+  # Info description must be set
+  nyt-info-description-exists:
+    description: API info description should describe the API.
+    message: "API info.description is recommended."
+    severity: warn
+    given: "$.info"
+    then:
+      function: truthy
+      field: description
+
+  # Server URLs should use HTTPS
+  nyt-server-https:
+    description: NYT API server URLs should use HTTPS.
+    message: "Server URL '{{value}}' should use HTTPS."
+    severity: warn
+    given: "$.servers[*].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://"
+
+  # Parameters must have descriptions
+  nyt-parameter-description-exists:
+    description: All parameters should include a description.
+    message: "Parameter '{{value}}' is missing a description."
+    severity: warn
+    given: "$.paths.*.*.parameters[*]"
+    then:
+      function: truthy
+      field: description
+
+  # Components schemas should exist when inline schemas are complex
+  nyt-components-schemas-reuse:
+    description: Reusable schemas should be defined under components/schemas.
+    message: "Consider moving complex inline schemas to components/schemas for reuse."
+    severity: hint
+    given: "$.components.schemas"
+    then:
+      function: truthy

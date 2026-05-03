@@ -1,0 +1,57 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.nytimes.com/svc/search/v2/articlesearch.json",
+    "params": {
+      "q": "artificial intelligence",
+      "begin_date": "20240101",
+      "end_date": "20240131",
+      "sort": "newest",
+      "api-key": "YOUR_API_KEY"
+    }
+  },
+  "response": {
+    "status": "OK",
+    "copyright": "Copyright (c) 2024 The New York Times Company. All Rights Reserved.",
+    "response": {
+      "docs": [
+        {
+          "_id": "nyt://article/a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+          "web_url": "https://www.nytimes.com/2024/01/15/technology/artificial-intelligence-regulation.html",
+          "snippet": "Lawmakers are pushing for new rules to govern artificial intelligence systems.",
+          "lead_paragraph": "Congress is moving forward with legislation that would impose new requirements on companies developing artificial intelligence systems.",
+          "abstract": "Federal lawmakers introduced a bipartisan bill to regulate AI systems used in critical infrastructure.",
+          "print_page": "A1",
+          "source": "The New York Times",
+          "headline": {
+            "main": "Congress Moves to Regulate Artificial Intelligence",
+            "kicker": "Technology Policy",
+            "print_headline": "A.I. Regulation Bill Advances in Senate"
+          },
+          "byline": {
+            "original": "By JANE DOE and JOHN SMITH",
+            "person": [
+              { "firstname": "Jane", "lastname": "Doe", "role": "reported" },
+              { "firstname": "John", "lastname": "Smith", "role": "reported" }
+            ]
+          },
+          "keywords": [
+            { "name": "subject", "value": "Artificial Intelligence", "rank": 1 },
+            { "name": "organizations", "value": "Senate", "rank": 2 }
+          ],
+          "pub_date": "2024-01-15T10:00:00+0000",
+          "document_type": "article",
+          "news_desk": "Technology",
+          "section_name": "Technology",
+          "type_of_material": "News",
+          "word_count": 1250
+        }
+      ],
+      "meta": {
+        "hits": 342,
+        "offset": 0,
+        "time": 423
+      }
+    }
+  }
+}
