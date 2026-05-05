@@ -1,0 +1,211 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+provider: The New York Times
+providerId: the-new-york-times
+publisherName: The New York Times
+serviceCategory: API
+created: '2026-05-04'
+modified: '2026-05-04'
+tags:
+  - Articles
+  - Books
+  - Movies
+  - News
+  - Media
+  - Publishing
+  - Journalism
+  - FinOps
+  - Cost Management
+  - FOCUS
+description: FinOps framework definition for the The New York Times API surface. Provides a FOCUS-aligned
+  mapping for cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
+principles:
+  - name: Visibility
+    description: Make API consumption costs visible to engineering, product, and finance teams in near
+      real-time.
+  - name: Allocation
+    description: Tag every chargeable API call with the consuming team, environment, application, and
+      feature so cost can be allocated.
+  - name: Optimization
+    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
+      cost per useful unit of work.
+  - name: Accountability
+    description: Establish budget owners and chargeback or showback flows for each consuming team.
+domains:
+  - name: Understand Usage and Cost
+    capabilities:
+      - Data Ingestion
+      - Allocation
+      - Reporting and Analytics
+      - Anomaly Management
+  - name: Quantify Business Value
+    capabilities:
+      - Planning and Estimating
+      - Forecasting
+      - Budgeting
+      - Benchmarking
+      - Unit Economics
+  - name: Optimize Usage and Cost
+    capabilities:
+      - Architecting for Cloud
+      - Rate Optimization
+      - Workload Optimization
+      - Cloud Sustainability
+      - Licensing and SaaS
+  - name: Manage the FinOps Practice
+    capabilities:
+      - FinOps Practice Operations
+      - FinOps Education and Enablement
+      - Invoicing and Chargeback
+      - Onboarding Workloads
+      - Intersecting Disciplines
+billingModel:
+  pricingCategory: Usage-Based
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+    - Usage
+    - Purchase
+    - Tax
+    - Credit
+    - Adjustment
+  chargeFrequency: Recurring
+focusColumns:
+  ServiceName: The New York Times
+  ServiceCategory: Developer Tools / API
+  ProviderName: The New York Times
+  PublisherName: The New York Times
+  InvoiceIssuerName: The New York Times
+  PricingCategory: Usage-Based
+  PricingUnit: request
+  BillingCurrency: USD
+  ChargeCategory: Usage
+meters:
+  - name: api_requests
+    description: Count of billable API requests
+    unit: request
+    aggregation: sum
+    dimensions:
+      - api
+      - endpoint
+      - tier
+      - region
+      - consumer
+  - name: data_egress
+    description: Bytes returned over the network in API responses
+    unit: GB
+    aggregation: sum
+    dimensions:
+      - api
+      - region
+      - consumer
+  - name: compute_seconds
+    description: Server-side compute consumed by the request, where applicable
+    unit: second
+    aggregation: sum
+    dimensions:
+      - api
+      - endpoint
+      - tier
+apis:
+  - name: The New York Times Archive API
+    baseURL: https://api.nytimes.com/svc/archive/v1
+    tags:
+      - Archive
+      - Articles
+      - Months
+      - Years
+      - History
+    serviceName: The New York Times Archive API
+    serviceCategory: API
+  - name: The New York Times Article Search API
+    baseURL: https://api.nytimes.com/svc/search/v2
+    tags:
+      - Articles
+      - Search
+      - Keywords
+      - Facets
+    serviceName: The New York Times Article Search API
+    serviceCategory: API
+  - name: The New York Times Books API
+    baseURL: https://api.nytimes.com/svc/books/v3
+    tags:
+      - Books
+      - Best Sellers
+      - Reviews
+      - Lists
+    serviceName: The New York Times Books API
+    serviceCategory: API
+  - name: The New York Times Most Popular API
+    baseURL: https://api.nytimes.com/svc/mostpopular/v2
+    tags:
+      - Articles
+      - Popular
+      - Social Sharing
+      - Trending
+    serviceName: The New York Times Most Popular API
+    serviceCategory: API
+  - name: The New York Times Movie Reviews API
+    baseURL: https://api.nytimes.com/svc/movies/v2
+    tags:
+      - Movies
+      - Reviews
+      - Critics
+      - Film
+    serviceName: The New York Times Movie Reviews API
+    serviceCategory: API
+  - name: The New York Times Semantic API
+    baseURL: https://api.nytimes.com/svc/semantic/v2
+    tags:
+      - Concepts
+      - Semantics
+      - Metadata
+      - Entities
+      - People
+      - Organizations
+    serviceName: The New York Times Semantic API
+    serviceCategory: API
+  - name: The New York Times TimesTags API
+    baseURL: https://api.nytimes.com/svc/suggest/v1
+    tags:
+      - Tags
+      - Autocomplete
+      - Metadata
+      - Search
+    serviceName: The New York Times TimesTags API
+    serviceCategory: API
+  - name: The New York Times Times Newswire API
+    baseURL: https://api.nytimes.com/svc/news/v3
+    tags:
+      - News
+      - Wire
+      - Streaming
+      - Articles
+      - Sections
+    serviceName: The New York Times Times Newswire API
+    serviceCategory: API
+  - name: The New York Times Top Stories API
+    baseURL: https://api.nytimes.com/svc/topstories/v2
+    tags:
+      - Articles
+      - Top Stories
+      - Sections
+      - News
+    serviceName: The New York Times Top Stories API
+    serviceCategory: API
+unitEconomics:
+  - name: Cost per 1K Requests
+    metric: billed_cost / (api_requests / 1000)
+    target: TBD
+  - name: Cost per Active Consumer
+    metric: billed_cost / active_consumers
+    target: TBD
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
