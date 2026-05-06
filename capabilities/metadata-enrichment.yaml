@@ -1,95 +1,161 @@
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
-  label: "NYT Metadata Enrichment"
-  description: "Workflow for enriching content with NYT semantic metadata and tags. Combines the Semantic API and TimesTags API to support knowledge graph construction, entity resolution, and metadata classification workflows. Used by data teams, NLP engineers, and editorial teams standardizing entity metadata."
+  label: NYT Metadata Enrichment
+  description: Workflow for enriching content with NYT semantic metadata and tags. Combines the Semantic API and TimesTags
+    API to support knowledge graph construction, entity resolution, and metadata classification workflows. Used by data teams,
+    NLP engineers, and editorial teams standardizing entity metadata.
   tags:
-    - New York Times
-    - Metadata
-    - Semantic
-    - Entities
-    - Knowledge Graph
-  created: "2026-05-03"
-  modified: "2026-05-03"
-
+  - New York Times
+  - Metadata
+  - Semantic
+  - Entities
+  - Knowledge Graph
+  created: '2026-05-03'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      NYT_API_KEY: NYT_API_KEY
-
+- namespace: env
+  keys:
+    NYT_API_KEY: NYT_API_KEY
 capability:
   consumes:
-    - import: nyt-semantic
-      location: ./shared/semantic.yaml
-
+  - type: http
+    namespace: nyt-semantic
+    baseUri: https://api.nytimes.com/svc/semantic/v2/concept
+    description: NYT Semantic API providing access to the NYT controlled vocabulary of concepts.
+    authentication:
+      type: apikey
+      key: api-key
+      value: '{{NYT_API_KEY}}'
+      placement: query
+    resources:
+    - name: concept-by-name
+      path: /name/{concept-type}/{specific-concept}.json
+      description: Get a specific concept by its type and name.
+      operations:
+      - name: get-concept-by-name
+        method: GET
+        description: Look up a specific NYT concept by its type and name.
+        inputParameters:
+        - name: concept-type
+          in: path
+          type: string
+          required: true
+          description: 'Concept type: nytd_geo, nytd_per, nytd_org, nytd_des.'
+        - name: specific-concept
+          in: path
+          type: string
+          required: true
+          description: The specific concept name (e.g., Baseball, Obama Barack).
+        - name: fields
+          in: query
+          type: string
+          required: false
+          description: Comma-separated optional fields to include in the response.
+        - name: query
+          in: query
+          type: string
+          required: true
+          description: Search term string.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: concept-search
+      path: /search.json
+      description: Search across all NYT concepts by substring.
+      operations:
+      - name: search-concepts
+        method: GET
+        description: Search the NYT concept vocabulary by query substring.
+        inputParameters:
+        - name: query
+          in: query
+          type: string
+          required: true
+          description: Search term to match against concept names.
+        - name: offset
+          in: query
+          type: integer
+          required: false
+          description: Starting index for pagination (up to 10 results per page).
+        - name: fields
+          in: query
+          type: string
+          required: false
+          description: Comma-separated optional fields to include in the response.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
   exposes:
-    - type: rest
-      port: 8082
-      namespace: nyt-metadata-enrichment-api
-      description: "Unified REST API for NYT metadata enrichment using the controlled vocabulary."
-      resources:
-        - path: /v1/concepts/{concept-type}/{specific-concept}
-          name: concept-by-name
-          description: "Look up a specific NYT concept by type and name."
-          operations:
-            - method: GET
-              name: get-concept-by-name
-              description: "Get full concept metadata including links, taxonomy, and article associations."
-              call: "nyt-semantic.get-concept-by-name"
-              with:
-                concept-type: "rest.concept-type"
-                specific-concept: "rest.specific-concept"
-                fields: "rest.fields"
-                query: "rest.query"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/concepts/search
-          name: concept-search
-          description: "Search NYT controlled vocabulary concepts."
-          operations:
-            - method: GET
-              name: search-concepts
-              description: "Search concepts by substring across all concept types."
-              call: "nyt-semantic.search-concepts"
-              with:
-                query: "rest.query"
-                offset: "rest.offset"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-    - type: mcp
-      port: 9092
-      namespace: nyt-metadata-enrichment-mcp
-      transport: http
-      description: "MCP server for AI-assisted semantic metadata enrichment using the NYT controlled vocabulary."
-      tools:
-        - name: get-concept-by-name
-          description: "Look up a specific NYT concept (person, place, organization, or descriptor) by type and exact name to get full metadata including taxonomy, geocodes, and related articles."
-          hints:
-            readOnly: true
-            idempotent: true
-          call: "nyt-semantic.get-concept-by-name"
-          with:
-            concept-type: "tools.concept-type"
-            specific-concept: "tools.specific-concept"
-            fields: "tools.fields"
-            query: "tools.query"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: search-concepts
-          description: "Search the NYT controlled vocabulary by substring to find people (nytd_per), places (nytd_geo), organizations (nytd_org), or descriptors (nytd_des)."
-          hints:
-            readOnly: true
-            idempotent: true
-          call: "nyt-semantic.search-concepts"
-          with:
-            query: "tools.query"
-            offset: "tools.offset"
-          outputParameters:
-            - type: object
-              mapping: "$."
+  - type: rest
+    port: 8082
+    namespace: nyt-metadata-enrichment-api
+    description: Unified REST API for NYT metadata enrichment using the controlled vocabulary.
+    resources:
+    - path: /v1/concepts/{concept-type}/{specific-concept}
+      name: concept-by-name
+      description: Look up a specific NYT concept by type and name.
+      operations:
+      - method: GET
+        name: get-concept-by-name
+        description: Get full concept metadata including links, taxonomy, and article associations.
+        call: nyt-semantic.get-concept-by-name
+        with:
+          concept-type: rest.concept-type
+          specific-concept: rest.specific-concept
+          fields: rest.fields
+          query: rest.query
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/concepts/search
+      name: concept-search
+      description: Search NYT controlled vocabulary concepts.
+      operations:
+      - method: GET
+        name: search-concepts
+        description: Search concepts by substring across all concept types.
+        call: nyt-semantic.search-concepts
+        with:
+          query: rest.query
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9092
+    namespace: nyt-metadata-enrichment-mcp
+    transport: http
+    description: MCP server for AI-assisted semantic metadata enrichment using the NYT controlled vocabulary.
+    tools:
+    - name: get-concept-by-name
+      description: Look up a specific NYT concept (person, place, organization, or descriptor) by type and exact name to get
+        full metadata including taxonomy, geocodes, and related articles.
+      hints:
+        readOnly: true
+        idempotent: true
+      call: nyt-semantic.get-concept-by-name
+      with:
+        concept-type: tools.concept-type
+        specific-concept: tools.specific-concept
+        fields: tools.fields
+        query: tools.query
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: search-concepts
+      description: Search the NYT controlled vocabulary by substring to find people (nytd_per), places (nytd_geo), organizations
+        (nytd_org), or descriptors (nytd_des).
+      hints:
+        readOnly: true
+        idempotent: true
+      call: nyt-semantic.search-concepts
+      with:
+        query: tools.query
+        offset: tools.offset
+      outputParameters:
+      - type: object
+        mapping: $.

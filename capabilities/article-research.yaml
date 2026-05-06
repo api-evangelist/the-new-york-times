@@ -1,161 +1,306 @@
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
-  label: "NYT Article Research"
-  description: "Unified workflow for researching and discovering NYT content. Combines article search, archive access, top stories, and the newswire to support journalists, researchers, and developers building news applications. Enables keyword-based article discovery, historical archive access, and real-time content monitoring."
+  label: NYT Article Research
+  description: Unified workflow for researching and discovering NYT content. Combines article search, archive access, top
+    stories, and the newswire to support journalists, researchers, and developers building news applications. Enables keyword-based
+    article discovery, historical archive access, and real-time content monitoring.
   tags:
-    - New York Times
-    - Research
-    - Articles
-    - Journalism
-    - News Discovery
-  created: "2026-05-03"
-  modified: "2026-05-03"
-
+  - New York Times
+  - Research
+  - Articles
+  - Journalism
+  - News Discovery
+  created: '2026-05-03'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      NYT_API_KEY: NYT_API_KEY
-
+- namespace: env
+  keys:
+    NYT_API_KEY: NYT_API_KEY
 capability:
   consumes:
-    - import: nyt-article-search
-      location: ./shared/article-search.yaml
-    - import: nyt-archive
-      location: ./shared/archive.yaml
-    - import: nyt-top-stories
-      location: ./shared/top-stories.yaml
-    - import: nyt-newswire
-      location: ./shared/times-newswire.yaml
-
+  - type: http
+    namespace: nyt-article-search
+    baseUri: https://api.nytimes.com/svc/search/v2
+    description: NYT Article Search API for searching articles by keyword, date range, and facets.
+    authentication:
+      type: apikey
+      key: api-key
+      value: '{{NYT_API_KEY}}'
+      placement: query
+    resources:
+    - name: articles
+      path: /articlesearch.json
+      description: Search NYT articles by keyword with filtering and faceting.
+      operations:
+      - name: search-articles
+        method: GET
+        description: Search NYT articles using keyword, filters, and facets.
+        inputParameters:
+        - name: q
+          in: query
+          type: string
+          required: false
+          description: Search query term. Searched against article body, headline, and byline.
+        - name: fq
+          in: query
+          type: string
+          required: false
+          description: Filtered search query using standard Lucene syntax.
+        - name: begin_date
+          in: query
+          type: string
+          required: false
+          description: Restricts results to articles published on or after this date (YYYYMMDD).
+        - name: end_date
+          in: query
+          type: string
+          required: false
+          description: Restricts results to articles published on or before this date (YYYYMMDD).
+        - name: sort
+          in: query
+          type: string
+          required: false
+          description: 'Sort results by relevance (default) or pub_date. Values: newest, oldest.'
+        - name: page
+          in: query
+          type: integer
+          required: false
+          description: Page of results (0-10, each page = 10 results).
+        - name: facet_field
+          in: query
+          type: string
+          required: false
+          description: Comma-delimited list of facet fields to include in the response.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  - type: http
+    namespace: nyt-archive
+    baseUri: https://api.nytimes.com/svc/archive/v1
+    description: NYT Archive API returning all articles published in a given month.
+    authentication:
+      type: apikey
+      key: api-key
+      value: '{{NYT_API_KEY}}'
+      placement: query
+    resources:
+    - name: archive
+      path: /{year}/{month}.json
+      description: Get all NYT articles published in a specific year and month.
+      operations:
+      - name: get-articles-by-month
+        method: GET
+        description: Returns all NYT articles for a given year and month going back to 1851.
+        inputParameters:
+        - name: year
+          in: path
+          type: integer
+          required: true
+          description: The year (e.g. 2016).
+        - name: month
+          in: path
+          type: integer
+          required: true
+          description: The month number (e.g. 1 for January).
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  - type: http
+    namespace: nyt-top-stories
+    baseUri: https://api.nytimes.com/svc/topstories/v2
+    description: NYT Top Stories API returning articles currently on the specified section.
+    authentication:
+      type: apikey
+      key: api-key
+      value: '{{NYT_API_KEY}}'
+      placement: query
+    resources:
+    - name: top-stories
+      path: /{section}.json
+      description: Get top stories for a specific NYT section.
+      operations:
+      - name: get-top-stories-by-section
+        method: GET
+        description: Get articles currently featured on the specified NYT section page.
+        inputParameters:
+        - name: section
+          in: path
+          type: string
+          required: true
+          description: 'Section name: arts, business, health, home, science, technology, us, world, etc.'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  - type: http
+    namespace: nyt-newswire
+    baseUri: https://api.nytimes.com/svc/news/v3
+    description: NYT Times Newswire API delivering real-time article metadata as articles are published.
+    authentication:
+      type: apikey
+      key: api-key
+      value: '{{NYT_API_KEY}}'
+      placement: query
+    resources:
+    - name: content
+      path: /content/{source}/{section}.json
+      description: Get recent content from a specific source and section.
+      operations:
+      - name: get-newswire-content
+        method: GET
+        description: Get recently published NYT articles by source and section.
+        inputParameters:
+        - name: source
+          in: path
+          type: string
+          required: true
+          description: 'Content source: all, nyt, or iht.'
+        - name: section
+          in: path
+          type: string
+          required: true
+          description: Section name or 'all' for all sections.
+        - name: limit
+          in: query
+          type: integer
+          required: false
+          description: Number of results to return (max 20, default 20).
+        - name: offset
+          in: query
+          type: integer
+          required: false
+          description: Starting record number (default 0).
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
   exposes:
-    - type: rest
-      port: 8080
-      namespace: nyt-article-research-api
-      description: "Unified REST API for researching and discovering NYT articles."
-      resources:
-        - path: /v1/articles
-          name: article-search
-          description: "Search NYT articles by keyword, date range, and facets."
-          operations:
-            - method: GET
-              name: search-articles
-              description: "Search NYT articles using keywords, filters, and facets."
-              call: "nyt-article-search.search-articles"
-              with:
-                q: "rest.q"
-                fq: "rest.fq"
-                begin_date: "rest.begin_date"
-                end_date: "rest.end_date"
-                sort: "rest.sort"
-                page: "rest.page"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/archive/{year}/{month}
-          name: archive
-          description: "NYT article archive by year and month."
-          operations:
-            - method: GET
-              name: get-articles-by-month
-              description: "Get all NYT articles for a specific year and month."
-              call: "nyt-archive.get-articles-by-month"
-              with:
-                year: "rest.year"
-                month: "rest.month"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/top-stories/{section}
-          name: top-stories
-          description: "Top stories from a specific NYT section."
-          operations:
-            - method: GET
-              name: get-top-stories-by-section
-              description: "Get top stories from the specified NYT section."
-              call: "nyt-top-stories.get-top-stories-by-section"
-              with:
-                section: "rest.section"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/newswire/{source}/{section}
-          name: newswire
-          description: "Real-time NYT article stream."
-          operations:
-            - method: GET
-              name: get-newswire-content
-              description: "Get recently published NYT articles in real-time."
-              call: "nyt-newswire.get-newswire-content"
-              with:
-                source: "rest.source"
-                section: "rest.section"
-                limit: "rest.limit"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-    - type: mcp
-      port: 9090
-      namespace: nyt-article-research-mcp
-      transport: http
-      description: "MCP server for AI-assisted NYT article research and content discovery."
-      tools:
-        - name: search-articles
-          description: "Search NYT articles from 1851 to today using keywords, date ranges, and section filters."
-          hints:
-            readOnly: true
-            idempotent: true
-          call: "nyt-article-search.search-articles"
-          with:
-            q: "tools.q"
-            fq: "tools.fq"
-            begin_date: "tools.begin_date"
-            end_date: "tools.end_date"
-            sort: "tools.sort"
-            page: "tools.page"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: get-articles-by-month
-          description: "Retrieve all NYT articles published in a specific year and month, going back to 1851."
-          hints:
-            readOnly: true
-            idempotent: true
-          call: "nyt-archive.get-articles-by-month"
-          with:
-            year: "tools.year"
-            month: "tools.month"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: get-top-stories-by-section
-          description: "Get articles currently featured on a specific NYT section front page."
-          hints:
-            readOnly: true
-            idempotent: true
-          call: "nyt-top-stories.get-top-stories-by-section"
-          with:
-            section: "tools.section"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: get-newswire-content
-          description: "Monitor the NYT newswire for recently published articles by section in real-time."
-          hints:
-            readOnly: true
-            idempotent: true
-          call: "nyt-newswire.get-newswire-content"
-          with:
-            source: "tools.source"
-            section: "tools.section"
-            limit: "tools.limit"
-          outputParameters:
-            - type: object
-              mapping: "$."
+  - type: rest
+    port: 8080
+    namespace: nyt-article-research-api
+    description: Unified REST API for researching and discovering NYT articles.
+    resources:
+    - path: /v1/articles
+      name: article-search
+      description: Search NYT articles by keyword, date range, and facets.
+      operations:
+      - method: GET
+        name: search-articles
+        description: Search NYT articles using keywords, filters, and facets.
+        call: nyt-article-search.search-articles
+        with:
+          q: rest.q
+          fq: rest.fq
+          begin_date: rest.begin_date
+          end_date: rest.end_date
+          sort: rest.sort
+          page: rest.page
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/archive/{year}/{month}
+      name: archive
+      description: NYT article archive by year and month.
+      operations:
+      - method: GET
+        name: get-articles-by-month
+        description: Get all NYT articles for a specific year and month.
+        call: nyt-archive.get-articles-by-month
+        with:
+          year: rest.year
+          month: rest.month
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/top-stories/{section}
+      name: top-stories
+      description: Top stories from a specific NYT section.
+      operations:
+      - method: GET
+        name: get-top-stories-by-section
+        description: Get top stories from the specified NYT section.
+        call: nyt-top-stories.get-top-stories-by-section
+        with:
+          section: rest.section
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/newswire/{source}/{section}
+      name: newswire
+      description: Real-time NYT article stream.
+      operations:
+      - method: GET
+        name: get-newswire-content
+        description: Get recently published NYT articles in real-time.
+        call: nyt-newswire.get-newswire-content
+        with:
+          source: rest.source
+          section: rest.section
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: nyt-article-research-mcp
+    transport: http
+    description: MCP server for AI-assisted NYT article research and content discovery.
+    tools:
+    - name: search-articles
+      description: Search NYT articles from 1851 to today using keywords, date ranges, and section filters.
+      hints:
+        readOnly: true
+        idempotent: true
+      call: nyt-article-search.search-articles
+      with:
+        q: tools.q
+        fq: tools.fq
+        begin_date: tools.begin_date
+        end_date: tools.end_date
+        sort: tools.sort
+        page: tools.page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-articles-by-month
+      description: Retrieve all NYT articles published in a specific year and month, going back to 1851.
+      hints:
+        readOnly: true
+        idempotent: true
+      call: nyt-archive.get-articles-by-month
+      with:
+        year: tools.year
+        month: tools.month
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-top-stories-by-section
+      description: Get articles currently featured on a specific NYT section front page.
+      hints:
+        readOnly: true
+        idempotent: true
+      call: nyt-top-stories.get-top-stories-by-section
+      with:
+        section: tools.section
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-newswire-content
+      description: Monitor the NYT newswire for recently published articles by section in real-time.
+      hints:
+        readOnly: true
+        idempotent: true
+      call: nyt-newswire.get-newswire-content
+      with:
+        source: tools.source
+        section: tools.section
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.

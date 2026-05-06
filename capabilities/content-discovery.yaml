@@ -1,267 +1,556 @@
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
-  label: "NYT Content Discovery"
-  description: "Workflow for discovering NYT content trends, popular articles, books, movies, and entertainment coverage. Combines the Most Popular API, Books API, and Movie Reviews API to support media analysts, editorial teams, and content recommendation systems."
+  label: NYT Content Discovery
+  description: Workflow for discovering NYT content trends, popular articles, books, movies, and entertainment coverage. Combines
+    the Most Popular API, Books API, and Movie Reviews API to support media analysts, editorial teams, and content recommendation
+    systems.
   tags:
-    - New York Times
-    - Content
-    - Trending
-    - Books
-    - Movies
-    - Entertainment
-  created: "2026-05-03"
-  modified: "2026-05-03"
-
+  - New York Times
+  - Content
+  - Trending
+  - Books
+  - Movies
+  - Entertainment
+  created: '2026-05-03'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      NYT_API_KEY: NYT_API_KEY
-
+- namespace: env
+  keys:
+    NYT_API_KEY: NYT_API_KEY
 capability:
   consumes:
-    - import: nyt-most-popular
-      location: ./shared/most-popular.yaml
-    - import: nyt-books
-      location: ./shared/books.yaml
-    - import: nyt-movie-reviews
-      location: ./shared/movie-reviews.yaml
-
+  - type: http
+    namespace: nyt-most-popular
+    baseUri: https://api.nytimes.com/svc/mostpopular/v2
+    description: NYT Most Popular API returning the most emailed, shared, and viewed articles.
+    authentication:
+      type: apikey
+      key: api-key
+      value: '{{NYT_API_KEY}}'
+      placement: query
+    resources:
+    - name: most-emailed
+      path: /mostemailed/{section}/{time-period}.json
+      description: Get the most emailed NYT articles by section and time period.
+      operations:
+      - name: get-most-emailed
+        method: GET
+        description: Get most emailed articles for a section over a time period.
+        inputParameters:
+        - name: section
+          in: path
+          type: string
+          required: true
+          description: Section name (e.g., Technology, Arts) or all-sections.
+        - name: time-period
+          in: path
+          type: string
+          required: true
+          description: 'Time period: 1 (day), 7 (week), or 30 (month).'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: most-shared
+      path: /mostshared/{section}/{time-period}.json
+      description: Get the most shared NYT articles by section and time period.
+      operations:
+      - name: get-most-shared
+        method: GET
+        description: Get most shared articles for a section over a time period.
+        inputParameters:
+        - name: section
+          in: path
+          type: string
+          required: true
+          description: Section name (e.g., Technology, Arts) or all-sections.
+        - name: time-period
+          in: path
+          type: string
+          required: true
+          description: 'Time period: 1 (day), 7 (week), or 30 (month).'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: most-viewed
+      path: /mostviewed/{section}/{time-period}.json
+      description: Get the most viewed NYT articles by section and time period.
+      operations:
+      - name: get-most-viewed
+        method: GET
+        description: Get most viewed articles for a section over a time period.
+        inputParameters:
+        - name: section
+          in: path
+          type: string
+          required: true
+          description: Section name (e.g., Technology, Arts) or all-sections.
+        - name: time-period
+          in: path
+          type: string
+          required: true
+          description: 'Time period: 1 (day), 7 (week), or 30 (month).'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  - type: http
+    namespace: nyt-books
+    baseUri: https://api.nytimes.com/svc/books/v3
+    description: NYT Books API providing best seller lists and book review information.
+    authentication:
+      type: apikey
+      key: api-key
+      value: '{{NYT_API_KEY}}'
+      placement: query
+    resources:
+    - name: best-seller-lists
+      path: /lists.json
+      description: Get current NYT Best Sellers lists by list name.
+      operations:
+      - name: get-best-seller-list
+        method: GET
+        description: Get best sellers for a specific list with optional filters.
+        inputParameters:
+        - name: list
+          in: query
+          type: string
+          required: false
+          description: Name of the best-seller list (e.g., hardcover-fiction).
+        - name: bestsellers-date
+          in: query
+          type: string
+          required: false
+          description: YYYY-MM-DD week-ending date for the best seller sales data.
+        - name: published-date
+          in: query
+          type: string
+          required: false
+          description: YYYY-MM-DD date the best-seller list was published.
+        - name: isbn
+          in: query
+          type: string
+          required: false
+          description: ISBN (10 or 13 digits).
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: best-seller-history
+      path: /lists/best-sellers/history.json
+      description: Get historical best seller data searchable by title, author, ISBN.
+      operations:
+      - name: get-best-seller-history
+        method: GET
+        description: Search the full history of NYT Best Sellers lists.
+        inputParameters:
+        - name: author
+          in: query
+          type: string
+          required: false
+          description: The author of the best seller.
+        - name: title
+          in: query
+          type: string
+          required: false
+          description: The title of the best seller.
+        - name: isbn
+          in: query
+          type: string
+          required: false
+          description: ISBN (10 or 13 digits).
+        - name: publisher
+          in: query
+          type: string
+          required: false
+          description: The standardized name of the publisher.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: list-names
+      path: /lists/names.json
+      description: Get all available NYT Best Sellers list names.
+      operations:
+      - name: get-best-seller-list-names
+        method: GET
+        description: Get a list of all Best Sellers list names with encoded names for API requests.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: list-overview
+      path: /lists/overview.json
+      description: Get an overview of all best seller lists for a given week.
+      operations:
+      - name: get-best-seller-list-overview
+        method: GET
+        description: Get a weekly overview of all NYT Best Sellers lists.
+        inputParameters:
+        - name: published_date
+          in: query
+          type: string
+          required: false
+          description: YYYY-MM-DD date for the best-seller list publication.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: reviews
+      path: /reviews.json
+      description: Get NYT book reviews.
+      operations:
+      - name: get-book-reviews
+        method: GET
+        description: Get NYT book reviews by title, author, or ISBN.
+        inputParameters:
+        - name: isbn
+          in: query
+          type: integer
+          required: false
+          description: ISBN of the book.
+        - name: title
+          in: query
+          type: string
+          required: false
+          description: Title of the book.
+        - name: author
+          in: query
+          type: string
+          required: false
+          description: Author of the book.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  - type: http
+    namespace: nyt-movie-reviews
+    baseUri: https://api.nytimes.com/svc/movies/v2
+    description: NYT Movie Reviews API providing access to reviews, critics, and critics' picks.
+    authentication:
+      type: apikey
+      key: api-key
+      value: '{{NYT_API_KEY}}'
+      placement: query
+    resources:
+    - name: critics
+      path: /critics/{reviewer}.json
+      description: Get movie critic profiles by reviewer name or category.
+      operations:
+      - name: get-movie-critics
+        method: GET
+        description: Get movie critic profiles including name, bio, and image.
+        inputParameters:
+        - name: reviewer
+          in: path
+          type: string
+          required: true
+          description: Reviewer name, or 'all', 'full-time', or 'part-time'.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: reviews
+      path: /reviews/{type}.json
+      description: Get movie reviews filtered by critics' pick status.
+      operations:
+      - name: get-movie-reviews
+        method: GET
+        description: Get movie reviews, optionally filtered to Critics' Picks.
+        inputParameters:
+        - name: type
+          in: path
+          type: string
+          required: true
+          description: 'Filter type: ''all'' for all reviews, ''picks'' for Critics'' Picks.'
+        - name: offset
+          in: query
+          type: integer
+          required: false
+          description: Starting point of results (multiple of 20).
+        - name: order
+          in: query
+          type: string
+          required: false
+          description: 'Sort order: by-opening-date or by-publication-date.'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: reviews-search
+      path: /reviews/search.json
+      description: Search for movie reviews by keyword, date ranges, or reviewer.
+      operations:
+      - name: search-movie-reviews
+        method: GET
+        description: Search movie reviews by keyword, opening date, publication date, or reviewer.
+        inputParameters:
+        - name: query
+          in: query
+          type: string
+          required: false
+          description: Search keyword (e.g. lebowski).
+        - name: critics-pick
+          in: query
+          type: string
+          required: false
+          description: Set to Y to only show critics' picks.
+        - name: reviewer
+          in: query
+          type: string
+          required: false
+          description: Filter by reviewer byline.
+        - name: opening-date
+          in: query
+          type: string
+          required: false
+          description: US opening date range (e.g. 1930-01-01:1940-01-01).
+        - name: publication-date
+          in: query
+          type: string
+          required: false
+          description: Review publication date range.
+        - name: order
+          in: query
+          type: string
+          required: false
+          description: Sort by by-opening-date or by-publication-date.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
   exposes:
-    - type: rest
-      port: 8081
-      namespace: nyt-content-discovery-api
-      description: "Unified REST API for discovering trending NYT content, book rankings, and movie reviews."
-      resources:
-        - path: /v1/most-emailed/{section}/{time-period}
-          name: most-emailed
-          description: "Most emailed NYT articles."
-          operations:
-            - method: GET
-              name: get-most-emailed
-              description: "Get most emailed articles by section and time period."
-              call: "nyt-most-popular.get-most-emailed"
-              with:
-                section: "rest.section"
-                time-period: "rest.time-period"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/most-shared/{section}/{time-period}
-          name: most-shared
-          description: "Most shared NYT articles."
-          operations:
-            - method: GET
-              name: get-most-shared
-              description: "Get most shared articles by section and time period."
-              call: "nyt-most-popular.get-most-shared"
-              with:
-                section: "rest.section"
-                time-period: "rest.time-period"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/most-viewed/{section}/{time-period}
-          name: most-viewed
-          description: "Most viewed NYT articles."
-          operations:
-            - method: GET
-              name: get-most-viewed
-              description: "Get most viewed articles by section and time period."
-              call: "nyt-most-popular.get-most-viewed"
-              with:
-                section: "rest.section"
-                time-period: "rest.time-period"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/best-sellers
-          name: best-sellers
-          description: "NYT Best Sellers lists."
-          operations:
-            - method: GET
-              name: get-best-seller-list
-              description: "Get current NYT Best Sellers list."
-              call: "nyt-books.get-best-seller-list"
-              with:
-                list: "rest.list"
-                bestsellers-date: "rest.bestsellers-date"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/book-reviews
-          name: book-reviews
-          description: "NYT book reviews."
-          operations:
-            - method: GET
-              name: get-book-reviews
-              description: "Get NYT book reviews by title, author, or ISBN."
-              call: "nyt-books.get-book-reviews"
-              with:
-                isbn: "rest.isbn"
-                title: "rest.title"
-                author: "rest.author"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/movie-reviews
-          name: movie-reviews
-          description: "NYT movie reviews."
-          operations:
-            - method: GET
-              name: get-movie-reviews
-              description: "Get NYT movie reviews, optionally filtered to Critics' Picks."
-              call: "nyt-movie-reviews.get-movie-reviews"
-              with:
-                type: "rest.type"
-                offset: "rest.offset"
-                order: "rest.order"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/movie-reviews/search
-          name: movie-reviews-search
-          description: "Search NYT movie reviews."
-          operations:
-            - method: GET
-              name: search-movie-reviews
-              description: "Search NYT movie reviews by keyword or reviewer."
-              call: "nyt-movie-reviews.search-movie-reviews"
-              with:
-                query: "rest.query"
-                reviewer: "rest.reviewer"
-                critics-pick: "rest.critics-pick"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-    - type: mcp
-      port: 9091
-      namespace: nyt-content-discovery-mcp
-      transport: http
-      description: "MCP server for AI-assisted content trend analysis and entertainment discovery."
-      tools:
-        - name: get-most-emailed
-          description: "Get the most emailed NYT articles by section and time period (1 day, 7 days, 30 days)."
-          hints:
-            readOnly: true
-            idempotent: true
-          call: "nyt-most-popular.get-most-emailed"
-          with:
-            section: "tools.section"
-            time-period: "tools.time-period"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: get-most-shared
-          description: "Get the most socially shared NYT articles by section and time period."
-          hints:
-            readOnly: true
-            idempotent: true
-          call: "nyt-most-popular.get-most-shared"
-          with:
-            section: "tools.section"
-            time-period: "tools.time-period"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: get-most-viewed
-          description: "Get the most viewed NYT articles by section and time period."
-          hints:
-            readOnly: true
-            idempotent: true
-          call: "nyt-most-popular.get-most-viewed"
-          with:
-            section: "tools.section"
-            time-period: "tools.time-period"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: get-best-seller-list
-          description: "Get current NYT Best Sellers list for a specific category (e.g., hardcover-fiction)."
-          hints:
-            readOnly: true
-            idempotent: true
-          call: "nyt-books.get-best-seller-list"
-          with:
-            list: "tools.list"
-            bestsellers-date: "tools.bestsellers-date"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: get-best-seller-history
-          description: "Search the full history of NYT Best Sellers by author, title, or ISBN."
-          hints:
-            readOnly: true
-            idempotent: true
-          call: "nyt-books.get-best-seller-history"
-          with:
-            author: "tools.author"
-            title: "tools.title"
-            isbn: "tools.isbn"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: get-book-reviews
-          description: "Get NYT book reviews by title, author, or ISBN."
-          hints:
-            readOnly: true
-            idempotent: true
-          call: "nyt-books.get-book-reviews"
-          with:
-            isbn: "tools.isbn"
-            title: "tools.title"
-            author: "tools.author"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: get-movie-reviews
-          description: "Get NYT movie reviews with optional filter for Critics' Picks."
-          hints:
-            readOnly: true
-            idempotent: true
-          call: "nyt-movie-reviews.get-movie-reviews"
-          with:
-            type: "tools.type"
-            order: "tools.order"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: search-movie-reviews
-          description: "Search NYT movie reviews by keyword, reviewer name, or date range."
-          hints:
-            readOnly: true
-            idempotent: true
-          call: "nyt-movie-reviews.search-movie-reviews"
-          with:
-            query: "tools.query"
-            reviewer: "tools.reviewer"
-            critics-pick: "tools.critics-pick"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: get-movie-critics
-          description: "Get NYT movie critic profiles and biographies."
-          hints:
-            readOnly: true
-            idempotent: true
-          call: "nyt-movie-reviews.get-movie-critics"
-          with:
-            reviewer: "tools.reviewer"
-          outputParameters:
-            - type: object
-              mapping: "$."
+  - type: rest
+    port: 8081
+    namespace: nyt-content-discovery-api
+    description: Unified REST API for discovering trending NYT content, book rankings, and movie reviews.
+    resources:
+    - path: /v1/most-emailed/{section}/{time-period}
+      name: most-emailed
+      description: Most emailed NYT articles.
+      operations:
+      - method: GET
+        name: get-most-emailed
+        description: Get most emailed articles by section and time period.
+        call: nyt-most-popular.get-most-emailed
+        with:
+          section: rest.section
+          time-period: rest.time-period
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/most-shared/{section}/{time-period}
+      name: most-shared
+      description: Most shared NYT articles.
+      operations:
+      - method: GET
+        name: get-most-shared
+        description: Get most shared articles by section and time period.
+        call: nyt-most-popular.get-most-shared
+        with:
+          section: rest.section
+          time-period: rest.time-period
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/most-viewed/{section}/{time-period}
+      name: most-viewed
+      description: Most viewed NYT articles.
+      operations:
+      - method: GET
+        name: get-most-viewed
+        description: Get most viewed articles by section and time period.
+        call: nyt-most-popular.get-most-viewed
+        with:
+          section: rest.section
+          time-period: rest.time-period
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/best-sellers
+      name: best-sellers
+      description: NYT Best Sellers lists.
+      operations:
+      - method: GET
+        name: get-best-seller-list
+        description: Get current NYT Best Sellers list.
+        call: nyt-books.get-best-seller-list
+        with:
+          list: rest.list
+          bestsellers-date: rest.bestsellers-date
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/book-reviews
+      name: book-reviews
+      description: NYT book reviews.
+      operations:
+      - method: GET
+        name: get-book-reviews
+        description: Get NYT book reviews by title, author, or ISBN.
+        call: nyt-books.get-book-reviews
+        with:
+          isbn: rest.isbn
+          title: rest.title
+          author: rest.author
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/movie-reviews
+      name: movie-reviews
+      description: NYT movie reviews.
+      operations:
+      - method: GET
+        name: get-movie-reviews
+        description: Get NYT movie reviews, optionally filtered to Critics' Picks.
+        call: nyt-movie-reviews.get-movie-reviews
+        with:
+          type: rest.type
+          offset: rest.offset
+          order: rest.order
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/movie-reviews/search
+      name: movie-reviews-search
+      description: Search NYT movie reviews.
+      operations:
+      - method: GET
+        name: search-movie-reviews
+        description: Search NYT movie reviews by keyword or reviewer.
+        call: nyt-movie-reviews.search-movie-reviews
+        with:
+          query: rest.query
+          reviewer: rest.reviewer
+          critics-pick: rest.critics-pick
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9091
+    namespace: nyt-content-discovery-mcp
+    transport: http
+    description: MCP server for AI-assisted content trend analysis and entertainment discovery.
+    tools:
+    - name: get-most-emailed
+      description: Get the most emailed NYT articles by section and time period (1 day, 7 days, 30 days).
+      hints:
+        readOnly: true
+        idempotent: true
+      call: nyt-most-popular.get-most-emailed
+      with:
+        section: tools.section
+        time-period: tools.time-period
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-most-shared
+      description: Get the most socially shared NYT articles by section and time period.
+      hints:
+        readOnly: true
+        idempotent: true
+      call: nyt-most-popular.get-most-shared
+      with:
+        section: tools.section
+        time-period: tools.time-period
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-most-viewed
+      description: Get the most viewed NYT articles by section and time period.
+      hints:
+        readOnly: true
+        idempotent: true
+      call: nyt-most-popular.get-most-viewed
+      with:
+        section: tools.section
+        time-period: tools.time-period
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-best-seller-list
+      description: Get current NYT Best Sellers list for a specific category (e.g., hardcover-fiction).
+      hints:
+        readOnly: true
+        idempotent: true
+      call: nyt-books.get-best-seller-list
+      with:
+        list: tools.list
+        bestsellers-date: tools.bestsellers-date
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-best-seller-history
+      description: Search the full history of NYT Best Sellers by author, title, or ISBN.
+      hints:
+        readOnly: true
+        idempotent: true
+      call: nyt-books.get-best-seller-history
+      with:
+        author: tools.author
+        title: tools.title
+        isbn: tools.isbn
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-book-reviews
+      description: Get NYT book reviews by title, author, or ISBN.
+      hints:
+        readOnly: true
+        idempotent: true
+      call: nyt-books.get-book-reviews
+      with:
+        isbn: tools.isbn
+        title: tools.title
+        author: tools.author
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-movie-reviews
+      description: Get NYT movie reviews with optional filter for Critics' Picks.
+      hints:
+        readOnly: true
+        idempotent: true
+      call: nyt-movie-reviews.get-movie-reviews
+      with:
+        type: tools.type
+        order: tools.order
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: search-movie-reviews
+      description: Search NYT movie reviews by keyword, reviewer name, or date range.
+      hints:
+        readOnly: true
+        idempotent: true
+      call: nyt-movie-reviews.search-movie-reviews
+      with:
+        query: tools.query
+        reviewer: tools.reviewer
+        critics-pick: tools.critics-pick
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-movie-critics
+      description: Get NYT movie critic profiles and biographies.
+      hints:
+        readOnly: true
+        idempotent: true
+      call: nyt-movie-reviews.get-movie-critics
+      with:
+        reviewer: tools.reviewer
+      outputParameters:
+      - type: object
+        mapping: $.
