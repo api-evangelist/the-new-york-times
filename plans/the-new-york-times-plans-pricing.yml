@@ -4,226 +4,69 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: The New York Times
 providerId: the-new-york-times
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
+  - News
   - Articles
   - Books
   - Movies
-  - News
   - Media
-  - Publishing
-  - Journalism
-description: Machine-readable plans and pricing scaffold for this API provider. Conforms to the API Commons
-  Plans schema. Tier limits and prices are scaffold defaults; replace with provider-published values.
+description: >-
+  The New York Times Developer Network exposes a free public set of APIs (Article Search, Top Stories,
+  Most Popular, Books, Movies, Archive, Times Wire, Semantic, Geo) for non-commercial use, behind a registered
+  app key. Commercial / redistribution use requires a separate agreement with The New York Times. The
+  developer.nytimes.com docs were not reachable from this environment at reconciliation time, so concrete
+  current quotas are not transcribed here.
+sources:
+  - https://developer.nytimes.com/
+notes: >-
+  developer.nytimes.com / nytimes.com were blocked at reconciliation time; quotas and the latest acceptable-use
+  terms must be re-verified against the live FAQ before any consumer relies on this artifact.
 plans:
-  - id: the-new-york-times-free
-    name: Free
+  - id: the-new-york-times-developer-free
+    name: Developer (Free, Non-Commercial)
     type: freemium
-    description: Free entry tier for the The New York Times API surface. Intended for evaluation, prototyping,
-      and low-volume integrations. Real limits and pricing must be reconciled with the provider's published
-      plan documentation.
+    description: Free developer tier with registered app key for non-commercial use of the public NYT APIs.
     entries:
-      - label: API Requests
-        description: Monthly API request quota across all included endpoints
-        name: api_requests
+      - label: Public API Access
+        name: public_api_access
         type: quota
-        metric: requests
-        limit: 1000
-        timeFrame: month
-        geo: global
-        domains:
-          - https://api.nytimes.com/svc/archive/v1
-          - https://api.nytimes.com/svc/search/v2
-          - https://api.nytimes.com/svc/books/v3
-          - https://api.nytimes.com/svc/mostpopular/v2
-          - https://api.nytimes.com/svc/movies/v2
-          - https://api.nytimes.com/svc/semantic/v2
-          - https://api.nytimes.com/svc/suggest/v1
-          - https://api.nytimes.com/svc/news/v3
-          - https://api.nytimes.com/svc/topstories/v2
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the free tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 10
-        timeFrame: minute
-        geo: global
-        domains:
-          - https://api.nytimes.com/svc/archive/v1
-          - https://api.nytimes.com/svc/search/v2
-          - https://api.nytimes.com/svc/books/v3
-          - https://api.nytimes.com/svc/mostpopular/v2
-          - https://api.nytimes.com/svc/movies/v2
-          - https://api.nytimes.com/svc/semantic/v2
-          - https://api.nytimes.com/svc/suggest/v1
-          - https://api.nytimes.com/svc/news/v3
-          - https://api.nytimes.com/svc/topstories/v2
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-    elements:
-      - name: Public Documentation
-      - name: Community Support
-      - name: Sandbox Access
-      - name: The New York Times Archive API
-      - name: The New York Times Article Search API
-      - name: The New York Times Books API
-      - name: The New York Times Most Popular API
-      - name: The New York Times Movie Reviews API
-      - name: The New York Times Semantic API
-      - name: The New York Times TimesTags API
-      - name: The New York Times Times Newswire API
-  - id: the-new-york-times-pro
-    name: Professional
-    type: paid
-    description: Production tier for The New York Times. Provides higher quotas, priority support, and
-      access to the broader API portfolio. Pricing placeholder; align with the provider's pricing page.
-    entries:
-      - label: API Requests
-        description: Monthly API request quota
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 100000
-        timeFrame: month
-        geo: global
-        domains:
-          - https://api.nytimes.com/svc/archive/v1
-          - https://api.nytimes.com/svc/search/v2
-          - https://api.nytimes.com/svc/books/v3
-          - https://api.nytimes.com/svc/mostpopular/v2
-          - https://api.nytimes.com/svc/movies/v2
-          - https://api.nytimes.com/svc/semantic/v2
-          - https://api.nytimes.com/svc/suggest/v1
-          - https://api.nytimes.com/svc/news/v3
-          - https://api.nytimes.com/svc/topstories/v2
-        unit: 1
-        price: TBD
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the professional tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 100
-        timeFrame: minute
-        geo: global
-        domains:
-          - https://api.nytimes.com/svc/archive/v1
-          - https://api.nytimes.com/svc/search/v2
-          - https://api.nytimes.com/svc/books/v3
-          - https://api.nytimes.com/svc/mostpopular/v2
-          - https://api.nytimes.com/svc/movies/v2
-          - https://api.nytimes.com/svc/semantic/v2
-          - https://api.nytimes.com/svc/suggest/v1
-          - https://api.nytimes.com/svc/news/v3
-          - https://api.nytimes.com/svc/topstories/v2
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Overage
-        description: Per-request price after monthly quota is exceeded
-        name: overage
-        type: metered
-        metric: requests
+        metric: request
         limit: -1
-        timeFrame: month
+        timeFrame: usage
         geo: global
-        domains:
-          - https://api.nytimes.com/svc/archive/v1
-          - https://api.nytimes.com/svc/search/v2
-          - https://api.nytimes.com/svc/books/v3
-          - https://api.nytimes.com/svc/mostpopular/v2
-          - https://api.nytimes.com/svc/movies/v2
-          - https://api.nytimes.com/svc/semantic/v2
-          - https://api.nytimes.com/svc/suggest/v1
-          - https://api.nytimes.com/svc/news/v3
-          - https://api.nytimes.com/svc/topstories/v2
-        unit: 1000
-        price: TBD
+        unit: 1
+        price: '0.00'
         userMultiplied: false
     elements:
-      - name: All Production Endpoints
-      - name: Email Support
-      - name: SLA Targets
-      - name: Webhook Subscriptions
-      - name: The New York Times Archive API
-      - name: The New York Times Article Search API
-      - name: The New York Times Books API
-      - name: The New York Times Most Popular API
-      - name: The New York Times Movie Reviews API
-      - name: The New York Times Semantic API
-      - name: The New York Times TimesTags API
-      - name: The New York Times Times Newswire API
-      - name: The New York Times Top Stories API
-  - id: the-new-york-times-enterprise
-    name: Enterprise
+      - name: Article Search API
+      - name: Top Stories API
+      - name: Most Popular API
+      - name: Books API
+      - name: Movie Reviews API
+      - name: Archive API
+      - name: Times Wire API
+      - name: Semantic API
+      - name: TimesTags API
+  - id: the-new-york-times-commercial
+    name: Commercial / Redistribution
     type: enterprise
-    description: Custom-negotiated tier for The New York Times. Includes dedicated capacity, contractual
-      SLAs, security review, data residency options, and named technical account management.
+    description: Commercial, redistribution, or syndication use requires a separate agreement with The
+      New York Times.
     entries:
-      - label: API Requests
-        description: Negotiated request volume; -1 indicates uncapped subject to fair use
-        name: api_requests
-        type: quota
-        metric: requests
+      - label: Commercial License
+        name: commercial_license
+        type: flat
+        metric: varies
         limit: -1
-        timeFrame: month
-        geo: configurable
-        domains:
-          - https://api.nytimes.com/svc/archive/v1
-          - https://api.nytimes.com/svc/search/v2
-          - https://api.nytimes.com/svc/books/v3
-          - https://api.nytimes.com/svc/mostpopular/v2
-          - https://api.nytimes.com/svc/movies/v2
-          - https://api.nytimes.com/svc/semantic/v2
-          - https://api.nytimes.com/svc/suggest/v1
-          - https://api.nytimes.com/svc/news/v3
-          - https://api.nytimes.com/svc/topstories/v2
+        timeFrame: usage
+        geo: global
         unit: 1
-        price: custom
-        userMultiplied: false
-      - label: Rate Limit
-        description: Negotiated burst and steady-state rate
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 1000
-        timeFrame: minute
-        geo: configurable
-        domains:
-          - https://api.nytimes.com/svc/archive/v1
-          - https://api.nytimes.com/svc/search/v2
-          - https://api.nytimes.com/svc/books/v3
-          - https://api.nytimes.com/svc/mostpopular/v2
-          - https://api.nytimes.com/svc/movies/v2
-          - https://api.nytimes.com/svc/semantic/v2
-          - https://api.nytimes.com/svc/suggest/v1
-          - https://api.nytimes.com/svc/news/v3
-          - https://api.nytimes.com/svc/topstories/v2
-        unit: 1
-        price: custom
+        price: contact The New York Times
         userMultiplied: false
     elements:
-      - name: Unlimited / Negotiated Volume
-      - name: 24/7 Dedicated Support
-      - name: Contractual SLA
-      - name: Security & Compliance Review
-      - name: Dedicated Account Manager
-      - name: Custom Data Residency
-      - name: The New York Times Archive API
-      - name: The New York Times Article Search API
-      - name: The New York Times Books API
-      - name: The New York Times Most Popular API
-      - name: The New York Times Movie Reviews API
-      - name: The New York Times Semantic API
-      - name: The New York Times TimesTags API
-      - name: The New York Times Times Newswire API
-      - name: The New York Times Top Stories API
+      - name: Negotiated Commercial Terms
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
