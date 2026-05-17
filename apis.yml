@@ -9,7 +9,7 @@ description: >-
   RESTful APIs enabling developers to search and access NYT articles, best-seller
   book lists, movie reviews, semantic metadata, top stories, and popular content.
   All APIs require an API key obtained from the NYT Developer Portal.
-type: Contract
+kind: contract
 image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 tags:
@@ -217,9 +217,9 @@ common:
   - url: https://developer.nytimes.com/
     type: Portal
   - url: https://developer.nytimes.com/get-started
-    type: Getting Started
+    type: GettingStarted
   - url: https://developer.nytimes.com/accounts/create
-    type: Signup
+    type: SignUp
   - url: https://developer.nytimes.com/accounts/login
     type: Login
   - url: https://developer.nytimes.com/terms
