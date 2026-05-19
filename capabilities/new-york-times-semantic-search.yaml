@@ -1,0 +1,97 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: The New York Times Semantic API — Search
+  description: 'The New York Times Semantic API — Search. 1 operations. Lead operation: Search. Self-contained Naftiko capability
+    covering one The New York Times business surface.'
+  tags:
+  - The New York Times
+  - Search
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    THE_NEW_YORK_TIMES_API_KEY: THE_NEW_YORK_TIMES_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: new-york-times-semantic-search
+    baseUri: http://api.nytimes.com/svc/semantic/v2/concept
+    description: The New York Times Semantic API — Search business capability. Self-contained, no shared references.
+    resources:
+    - name: search.json
+      path: /search.json
+      operations:
+      - name: get
+        method: GET
+        description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: query
+          in: query
+          type: string
+          description: Precedes the search term string. Used in a Search Query. Except for &lt;specific_concept_name&gt;,
+            Search Query will take the required parameters listed above (
+          required: true
+        - name: offset
+          in: query
+          type: integer
+          description: Integer value for the index count from the first concept to the last concept, sorted alphabetically.
+            Used in a Search Query. A Search Query will return up to 10
+        - name: fields
+          in: query
+          type: string
+          description: '"all" or comma-separated list of specific optional fields: pages, ticker_symbol, links, taxonomy,
+            combinations, geocodes, article_list, scope_notes, search_api_'
+    authentication:
+      type: apikey
+      key: api-key
+      value: '{{env.THE_NEW_YORK_TIMES_API_KEY}}'
+      placement: query
+  exposes:
+  - type: rest
+    namespace: new-york-times-semantic-search-rest
+    port: 8080
+    description: REST adapter for The New York Times Semantic API — Search. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/search-json
+      name: search-json
+      description: REST surface for search.json.
+      operations:
+      - method: GET
+        name: get
+        description: get
+        call: new-york-times-semantic-search.get
+        with:
+          query: rest.query
+          offset: rest.offset
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: new-york-times-semantic-search-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for The New York Times Semantic API — Search. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: get
+      description: get
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: new-york-times-semantic-search.get
+      with:
+        query: tools.query
+        offset: tools.offset
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.

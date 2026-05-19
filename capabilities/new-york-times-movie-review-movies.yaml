@@ -1,0 +1,215 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: The New York Times Movie Reviews API — Movies
+  description: 'The New York Times Movie Reviews API — Movies. 3 operations. Lead operation: Get Movie Critics Name, Bio And
+    Image. Self-contained Naftiko capability covering one The New York Times business surface.'
+  tags:
+  - The New York Times
+  - Movies
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    THE_NEW_YORK_TIMES_API_KEY: THE_NEW_YORK_TIMES_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: new-york-times-movie-review-movies
+    baseUri: https://api.nytimes.com/svc/movies/v2
+    description: The New York Times Movie Reviews API — Movies business capability. Self-contained, no shared references.
+    resources:
+    - name: critics-reviewer}.json
+      path: /critics/{reviewer}.json
+      operations:
+      - name: get
+        method: GET
+        description: Get Movie Critics Name, Bio And Image
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: reviewer
+          in: path
+          type: string
+          description: Reviewer name or "all" for all reviewers, "full-time" for full-time reviewers, or "part-time" for part-time
+            reviewers.
+          required: true
+    - name: reviews-search.json
+      path: /reviews/search.json
+      operations:
+      - name: get
+        method: GET
+        description: Search Movie Reviews
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: critics-pick
+          in: query
+          type: string
+          description: Set to Y to only show critics' picks.  Otherwise shows both.
+        - name: offset
+          in: query
+          type: integer
+          description: Sets the starting point of the result set (0, 20, ...).  Used to paginate thru results. Defaults to
+            0. The has_more field indicates the response has more result
+        - name: opening-date
+          in: query
+          type: string
+          description: U.S. opening date range. Start and end dates separated by colon (e.g. 1930-01-01:1940-01-01).
+        - name: order
+          in: query
+          type: string
+          description: Field to order results by (e.g. by-publication-date).
+        - name: publication-date
+          in: query
+          type: string
+          description: Review publication date range. Start and end dates separated by colon (e.g. 1930-01-01:1940-01-01).
+        - name: reviewer
+          in: query
+          type: string
+          description: Filter by reviewer byline (e.g. Stephen Holden).
+        - name: query
+          in: query
+          type: string
+          description: Search keyword (e.g. lebowski).
+    - name: reviews-type}.json
+      path: /reviews/{type}.json
+      operations:
+      - name: get
+        method: GET
+        description: Get Movie Reviews
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: type
+          in: path
+          type: string
+          description: Filter by critics' pick or not.
+          required: true
+        - name: offset
+          in: query
+          type: integer
+          description: Sets the starting point of the result set.  Needs to be multiple of 20.
+        - name: order
+          in: query
+          type: string
+          description: How to order the results.
+    authentication:
+      type: apikey
+      key: api-key
+      value: '{{env.THE_NEW_YORK_TIMES_API_KEY}}'
+      placement: query
+  exposes:
+  - type: rest
+    namespace: new-york-times-movie-review-movies-rest
+    port: 8080
+    description: REST adapter for The New York Times Movie Reviews API — Movies. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/critics/reviewer-json
+      name: critics-reviewer-json
+      description: REST surface for critics-reviewer}.json.
+      operations:
+      - method: GET
+        name: get
+        description: Get Movie Critics Name, Bio And Image
+        call: new-york-times-movie-review-movies.get
+        with:
+          reviewer: rest.reviewer
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/reviews/search-json
+      name: reviews-search-json
+      description: REST surface for reviews-search.json.
+      operations:
+      - method: GET
+        name: get
+        description: Search Movie Reviews
+        call: new-york-times-movie-review-movies.get
+        with:
+          critics-pick: rest.critics-pick
+          offset: rest.offset
+          opening-date: rest.opening-date
+          order: rest.order
+          publication-date: rest.publication-date
+          reviewer: rest.reviewer
+          query: rest.query
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/reviews/type-json
+      name: reviews-type-json
+      description: REST surface for reviews-type}.json.
+      operations:
+      - method: GET
+        name: get
+        description: Get Movie Reviews
+        call: new-york-times-movie-review-movies.get
+        with:
+          type: rest.type
+          offset: rest.offset
+          order: rest.order
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: new-york-times-movie-review-movies-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for The New York Times Movie Reviews API — Movies. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: get-movie-critics-name-bio
+      description: Get Movie Critics Name, Bio And Image
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: new-york-times-movie-review-movies.get
+      with:
+        reviewer: tools.reviewer
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: search-movie-reviews
+      description: Search Movie Reviews
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: new-york-times-movie-review-movies.get
+      with:
+        critics-pick: tools.critics-pick
+        offset: tools.offset
+        opening-date: tools.opening-date
+        order: tools.order
+        publication-date: tools.publication-date
+        reviewer: tools.reviewer
+        query: tools.query
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-movie-reviews
+      description: Get Movie Reviews
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: new-york-times-movie-review-movies.get
+      with:
+        type: tools.type
+        offset: tools.offset
+        order: tools.order
+      outputParameters:
+      - type: object
+        mapping: $.
