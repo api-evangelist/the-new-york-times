@@ -234,6 +234,8 @@ common:
     type: JSONLDContext
   - url: vocabulary/the-new-york-times-vocabulary.yml
     type: Vocabulary
+  - type: LLMsTxt
+    url: https://developer.nytimes.com/llms.txt
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
