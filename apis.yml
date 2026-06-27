@@ -39,7 +39,7 @@ apis:
       type: Documentation
     - url: openapi/new-york-times-archive-openapi-original.yml
       type: OpenAPI
-    - type: NaftikoCapability
+    - type: X-NaftikoCapability
       url: capabilities/new-york-times-archive-archive.yaml
   - aid: the-new-york-times:article-search-api
     name: The New York Times Article Search API
@@ -59,7 +59,7 @@ apis:
       type: Documentation
     - url: openapi/new-york-times-article-search-openapi-original.yml
       type: OpenAPI
-    - type: NaftikoCapability
+    - type: X-NaftikoCapability
       url: capabilities/new-york-times-article-search-stories.yaml
   - aid: the-new-york-times:books-api
     name: The New York Times Books API
@@ -112,7 +112,7 @@ apis:
       type: Documentation
     - url: openapi/new-york-times-movie-review-openapi-original.yml
       type: OpenAPI
-    - type: NaftikoCapability
+    - type: X-NaftikoCapability
       url: capabilities/new-york-times-movie-review-movies.yaml
   - aid: the-new-york-times:semantic-api
     name: The New York Times Semantic API
@@ -134,9 +134,9 @@ apis:
       type: Documentation
     - url: openapi/new-york-times-semantic-openapi-original.yml
       type: OpenAPI
-    - type: NaftikoCapability
+    - type: X-NaftikoCapability
       url: capabilities/new-york-times-semantic-name.yaml
-    - type: NaftikoCapability
+    - type: X-NaftikoCapability
       url: capabilities/new-york-times-semantic-search.yaml
   - aid: the-new-york-times:timestags-api
     name: The New York Times TimesTags API
@@ -156,7 +156,7 @@ apis:
       type: Documentation
     - url: openapi/new-york-times-times-tags-openapi-original.yml
       type: OpenAPI
-    - type: NaftikoCapability
+    - type: X-NaftikoCapability
       url: capabilities/new-york-times-times-tags-timestags.yaml
   - aid: the-new-york-times:times-newswire-api
     name: The New York Times Times Newswire API
@@ -176,7 +176,7 @@ apis:
       type: Documentation
     - url: openapi/new-york-times-times-newswire-openapi-original.yml
       type: OpenAPI
-    - type: NaftikoCapability
+    - type: X-NaftikoCapability
       url: capabilities/new-york-times-times-newswire-content.yaml
   - aid: the-new-york-times:top-stories
     name: The New York Times Top Stories API
@@ -195,7 +195,7 @@ apis:
       type: Documentation
     - url: openapi/new-york-times-top-stories-openapi-original.yml
       type: OpenAPI
-    - type: NaftikoCapability
+    - type: X-NaftikoCapability
       url: capabilities/new-york-times-top-stories-stories.yaml
 common:
   - type: LinkedIn
@@ -205,7 +205,7 @@ common:
   - url: https://developer.nytimes.com/get-started
     type: GettingStarted
   - url: https://developer.nytimes.com/accounts/create
-    type: SignUp
+    type: Signup
   - url: https://developer.nytimes.com/accounts/login
     type: Login
   - url: https://developer.nytimes.com/terms
@@ -220,10 +220,10 @@ common:
     type: OpenAPI
   - url: https://github.com/nytimes/times_wire
     name: Times Wire Ruby Client
-    type: SDK
+    type: SDKs
   - url: https://github.com/nytimes/nytcampfin
     name: Campaign Finance Python Client
-    type: SDK
+    type: SDKs
   - url: rules/new-york-times-rules.yml
     type: SpectralRuleset
   - url: json-schema/new-york-times-article-schema.json
@@ -234,7 +234,7 @@ common:
     type: JSONLDContext
   - url: vocabulary/the-new-york-times-vocabulary.yml
     type: Vocabulary
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://developer.nytimes.com/llms.txt
 maintainers:
   - FN: Kin Lane
