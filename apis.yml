@@ -198,6 +198,12 @@ apis:
     - type: X-NaftikoCapability
       url: capabilities/new-york-times-top-stories-stories.yaml
 common:
+  - type: VulnerabilityDisclosure
+    url: security/the-new-york-times-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/the-new-york-times-domain-security.yml
+  - type: Authentication
+    url: authentication/the-new-york-times-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/the-new-york-times
   - url: https://developer.nytimes.com/
