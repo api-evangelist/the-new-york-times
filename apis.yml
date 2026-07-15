@@ -198,6 +198,8 @@ apis:
     - type: X-NaftikoCapability
       url: capabilities/new-york-times-top-stories-stories.yaml
 common:
+  - type: AgenticAccess
+    url: agentic-access/the-new-york-times-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/the-new-york-times-vulnerability-disclosure.yml
   - type: DomainSecurity
