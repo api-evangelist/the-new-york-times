@@ -1,0 +1,130 @@
+openapi: 3.0.0
+info:
+  description: The Archive API provides lists of NYT articles by month going back to 1851.  You can use it to build your own local database of NYT article metadata.
+  termsOfService: http://developer.nytimes.com/tou
+  title: The New York Times Archive Search API
+  version: 1.0.0
+  x-apiClientRegistration:
+    url: http://developer.nytimes.com/signup
+  x-apisguru-categories:
+  - media
+  - open_data
+  x-logo:
+    url: https://api.apis.guru/v2/cache/logo/https_static01.nyt.com_images_icons_t_logo_291_black.png
+  x-origin:
+  - format: openapi
+    url: https://raw.githubusercontent.com/nytimes/public_api_specs/master/archive_api/archive_api.json
+    version: '3.0'
+  x-providerName: nytimes.com
+  x-serviceName: archive
+servers:
+- url: http://api.nytimes.com/svc/archive/v1
+- url: https://api.nytimes.com/svc/archive/v1
+security:
+- apikey: []
+tags:
+- name: Search
+paths:
+  /search.json:
+    get:
+      parameters:
+      - name: query
+        in: query
+        description: Precedes the search term string. Used in a Search Query. Except for &lt;specific_concept_name&gt;, Search Query will take the required parameters listed above (&lt;concept_type&gt;, &lt;concept_uri&gt;, &lt;article_uri&gt;) as an optional_parameter in addition to the query=&lt;query_term&gt;.
+        required: true
+        schema:
+          type: string
+      - name: offset
+        in: query
+        description: Integer value for the index count from the first concept to the last concept, sorted alphabetically. Used in a Search Query. A Search Query will return up to 10 concepts in its results.
+        schema:
+          type: integer
+          default: 10
+      - name: fields
+        in: query
+        description: '"all" or comma-separated list of specific optional fields: pages, ticker_symbol, links, taxonomy, combinations, geocodes, article_list, scope_notes, search_api_query
+
+
+          Optional fields are returned in result_set. They are briefly explained here:
+
+
+          pages: A list of topic pages associated with a specific concept.
+
+          ticker_symbol: If this concept is a publicly traded company, this field contains the ticker symbol.
+
+          links: A list of links from this concept to external data resources.
+
+          taxonomy: For descriptor concepts, this field returns a list of taxonomic relations to other concepts.
+
+          combinations: For descriptor concepts, this field returns a list of the specific meanings tis concept takes on when combined with other concepts.
+
+          geocodes: For geographic concepts, the full GIS record from geonames.
+
+          article_list: A list of up to 10 articles associated with this concept.
+
+          scope_notes: Scope notes contains clarifications and meaning definitions that explicate the relationship between the concept and an article.
+
+          search_api_query: Returns the request one would need to submit to the Article Search API to obtain a list of articles annotated with this concept.
+
+          '
+        schema:
+          type: string
+          enum:
+          - all
+          - pages
+          - ticker_symbol
+          - links
+          - taxonomy
+          - combinations
+          - geocodes
+          - article_list
+          - scope_notes
+          - search_api_query
+      responses:
+        '200':
+          description: An array of Concepts
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  copyright:
+                    type: string
+                  num_results:
+                    type: integer
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ConceptRelation'
+      tags:
+      - Search
+components:
+  schemas:
+    ConceptRelation:
+      type: object
+      properties:
+        concept_id:
+          type: integer
+        concept_name:
+          type: string
+        is_times_tag:
+          type: integer
+        concept_status:
+          type: string
+        vernacular:
+          type: string
+        concept_type:
+          type: string
+        concept_created:
+          type: string
+        concept_updated:
+          type: string
+  securitySchemes:
+    apikey:
+      in: query
+      name: api-key
+      type: apiKey
+externalDocs:
+  url: http://developer.nytimes.com/
