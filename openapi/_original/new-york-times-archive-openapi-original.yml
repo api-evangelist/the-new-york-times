@@ -1,59 +1,59 @@
 openapi: 3.0.0
+servers:
+  - url: http://api.nytimes.com/svc/archive/v1
+  - url: https://api.nytimes.com/svc/archive/v1
 info:
   description: The Archive API provides lists of NYT articles by month going back to 1851.  You can use it to build your own local database of NYT article metadata.
   termsOfService: http://developer.nytimes.com/tou
   title: The New York Times Archive API
-  version: '3.0'
+  version: 1.0.0
   x-apiClientRegistration:
     url: http://developer.nytimes.com/signup
   x-apisguru-categories:
-  - media
-  - open_data
+    - media
+    - open_data
   x-logo:
     url: https://api.apis.guru/v2/cache/logo/https_static01.nyt.com_images_icons_t_logo_291_black.png
   x-origin:
-  - format: openapi
-    url: https://raw.githubusercontent.com/nytimes/public_api_specs/master/archive_api/archive_api.json
+    - format: openapi
+      url: https://raw.githubusercontent.com/nytimes/public_api_specs/master/archive_api/archive_api.json
+      version: "3.0"
   x-providerName: nytimes.com
   x-serviceName: archive
-servers:
-- url: http://api.nytimes.com/svc/archive/v1
-- url: https://api.nytimes.com/svc/archive/v1
+externalDocs:
+  url: http://developer.nytimes.com/
 security:
-- apikey: []
-tags:
-- name: Archive
+  - apikey: []
 paths:
-  /{year}/{month}.json:
+  "/{year}/{month}.json":
     get:
-      description: 'The Archive API provides lists of NYT articles by month going back to 1851.  Simply pass in the year and month you want and it returns a JSON object with all articles for that month.
-
-        '
+      description: |
+        The Archive API provides lists of NYT articles by month going back to 1851.  Simply pass in the year and month you want and it returns a JSON object with all articles for that month.
       parameters:
-      - description: The year (e.g. 2016).
-        in: path
-        name: year
-        required: true
-        schema:
-          default: '2016'
-          format: int32
-          maximum: 2030
-          minimum: 1851
-          type: integer
-        x-consoleDefault: '2016'
-      - description: The month number (e.g. 1 for January).
-        in: path
-        name: month
-        required: true
-        schema:
-          default: '1'
-          format: int32
-          maximum: 12
-          minimum: 1
-          type: integer
-        x-consoleDefault: '1'
+        - description: The year (e.g. 2016).
+          in: path
+          name: year
+          required: true
+          schema:
+            default: "2016"
+            format: int32
+            maximum: 2030
+            minimum: 1851
+            type: integer
+          x-consoleDefault: "2016"
+        - description: The month number (e.g. 1 for January).
+          in: path
+          name: month
+          required: true
+          schema:
+            default: "1"
+            format: int32
+            maximum: 12
+            minimum: 1
+            type: integer
+          x-consoleDefault: "1"
       responses:
-        '200':
+        "200":
           content:
             application/json:
               schema:
@@ -62,7 +62,7 @@ paths:
                     properties:
                       docs:
                         items:
-                          $ref: '#/components/schemas/Doc'
+                          $ref: "#/components/schemas/Doc"
                         type: array
                       meta:
                         properties:
@@ -78,7 +78,7 @@ paths:
           description: The docs requested.
       summary: The New York Times Archive API
       tags:
-      - Archive
+        - Archive
 components:
   schemas:
     Doc:
@@ -169,5 +169,5 @@ components:
       in: query
       name: api-key
       type: apiKey
-externalDocs:
-  url: http://developer.nytimes.com/
+tags:
+  - name: Archive

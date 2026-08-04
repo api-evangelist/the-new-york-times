@@ -1,0 +1,29 @@
+{
+  "provider": "the-new-york-times",
+  "sources": [
+    "the-new-york-times-archive-api-openapi.yml",
+    "the-new-york-times-content-api-openapi.yml",
+    "the-new-york-times-movies-api-openapi.yml",
+    "the-new-york-times-name-api-openapi.yml",
+    "the-new-york-times-search-api-openapi.yml",
+    "the-new-york-times-stories-api-openapi.yml",
+    "the-new-york-times-timestags-api-openapi.yml"
+  ],
+  "outputs": [
+    "the-new-york-times-archive-api-openapi.yml",
+    "the-new-york-times-content-api-openapi.yml",
+    "the-new-york-times-movies-api-openapi.yml",
+    "the-new-york-times-name-api-openapi.yml",
+    "the-new-york-times-search-api-openapi.yml",
+    "the-new-york-times-stories-api-openapi.yml",
+    "the-new-york-times-timestags-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": [
+    "new-york-times-books-openapi-original.yml: parse error ReaderError: unacceptable character #x009d: special characters are not allowed",
+    "new-york-times-most-popular-openapi-original.yml: parse error ReaderError: unacceptable character #x009d: special characters are not allowed"
+  ]
+}
