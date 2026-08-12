@@ -46,38 +46,22 @@ apis:
     url: openapi/the-new-york-times-archive-api-openapi.yml
   - type: Documentation
     url: https://developer.nytimes.com/docs/archive-product/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-archive-archive.yaml
   - type: Documentation
     url: https://developer.nytimes.com/docs/articlesearch-product/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-article-search-stories.yaml
   - type: Documentation
     url: https://developer.nytimes.com/docs/books-product/1/overview
   - type: Documentation
     url: https://developer.nytimes.com/docs/most-popular-product/1/overview
   - type: Documentation
     url: https://developer.nytimes.com/docs/movie-reviews-api/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-movie-review-movies.yaml
   - type: Documentation
     url: https://developer.nytimes.com/docs/semantic-api-product/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-semantic-name.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-semantic-search.yaml
   - type: Documentation
     url: https://developer.nytimes.com/docs/timestags-product/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-times-tags-timestags.yaml
   - type: Documentation
     url: https://developer.nytimes.com/docs/timeswire-product/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-times-newswire-content.yaml
   - type: Documentation
     url: https://developer.nytimes.com/docs/top-stories-product/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-top-stories-stories.yaml
 - aid: the-new-york-times:the-new-york-times-content-api
   name: The New York Times Content API
   description: The Content API from The New York Times — 3 operation(s) for content.
@@ -90,38 +74,22 @@ apis:
     url: openapi/the-new-york-times-content-api-openapi.yml
   - type: Documentation
     url: https://developer.nytimes.com/docs/archive-product/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-archive-archive.yaml
   - type: Documentation
     url: https://developer.nytimes.com/docs/articlesearch-product/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-article-search-stories.yaml
   - type: Documentation
     url: https://developer.nytimes.com/docs/books-product/1/overview
   - type: Documentation
     url: https://developer.nytimes.com/docs/most-popular-product/1/overview
   - type: Documentation
     url: https://developer.nytimes.com/docs/movie-reviews-api/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-movie-review-movies.yaml
   - type: Documentation
     url: https://developer.nytimes.com/docs/semantic-api-product/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-semantic-name.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-semantic-search.yaml
   - type: Documentation
     url: https://developer.nytimes.com/docs/timestags-product/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-times-tags-timestags.yaml
   - type: Documentation
     url: https://developer.nytimes.com/docs/timeswire-product/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-times-newswire-content.yaml
   - type: Documentation
     url: https://developer.nytimes.com/docs/top-stories-product/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-top-stories-stories.yaml
 - aid: the-new-york-times:the-new-york-times-movies-api
   name: The New York Times Movies API
   description: The Movies API from The New York Times — 3 operation(s) for movies.
@@ -134,38 +102,22 @@ apis:
     url: openapi/the-new-york-times-movies-api-openapi.yml
   - type: Documentation
     url: https://developer.nytimes.com/docs/archive-product/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-archive-archive.yaml
   - type: Documentation
     url: https://developer.nytimes.com/docs/articlesearch-product/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-article-search-stories.yaml
   - type: Documentation
     url: https://developer.nytimes.com/docs/books-product/1/overview
   - type: Documentation
     url: https://developer.nytimes.com/docs/most-popular-product/1/overview
   - type: Documentation
     url: https://developer.nytimes.com/docs/movie-reviews-api/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-movie-review-movies.yaml
   - type: Documentation
     url: https://developer.nytimes.com/docs/semantic-api-product/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-semantic-name.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-semantic-search.yaml
   - type: Documentation
     url: https://developer.nytimes.com/docs/timestags-product/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-times-tags-timestags.yaml
   - type: Documentation
     url: https://developer.nytimes.com/docs/timeswire-product/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-times-newswire-content.yaml
   - type: Documentation
     url: https://developer.nytimes.com/docs/top-stories-product/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-top-stories-stories.yaml
 - aid: the-new-york-times:the-new-york-times-name-api
   name: The New York Times Name API
   description: The Name API from The New York Times — 1 operation(s) for name.
@@ -178,38 +130,22 @@ apis:
     url: openapi/the-new-york-times-name-api-openapi.yml
   - type: Documentation
     url: https://developer.nytimes.com/docs/archive-product/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-archive-archive.yaml
   - type: Documentation
     url: https://developer.nytimes.com/docs/articlesearch-product/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-article-search-stories.yaml
   - type: Documentation
     url: https://developer.nytimes.com/docs/books-product/1/overview
   - type: Documentation
     url: https://developer.nytimes.com/docs/most-popular-product/1/overview
   - type: Documentation
     url: https://developer.nytimes.com/docs/movie-reviews-api/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-movie-review-movies.yaml
   - type: Documentation
     url: https://developer.nytimes.com/docs/semantic-api-product/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-semantic-name.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-semantic-search.yaml
   - type: Documentation
     url: https://developer.nytimes.com/docs/timestags-product/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-times-tags-timestags.yaml
   - type: Documentation
     url: https://developer.nytimes.com/docs/timeswire-product/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-times-newswire-content.yaml
   - type: Documentation
     url: https://developer.nytimes.com/docs/top-stories-product/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-top-stories-stories.yaml
 - aid: the-new-york-times:the-new-york-times-search-api
   name: The New York Times Search API
   description: The Search API from The New York Times — 1 operation(s) for search.
@@ -222,38 +158,22 @@ apis:
     url: openapi/the-new-york-times-search-api-openapi.yml
   - type: Documentation
     url: https://developer.nytimes.com/docs/archive-product/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-archive-archive.yaml
   - type: Documentation
     url: https://developer.nytimes.com/docs/articlesearch-product/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-article-search-stories.yaml
   - type: Documentation
     url: https://developer.nytimes.com/docs/books-product/1/overview
   - type: Documentation
     url: https://developer.nytimes.com/docs/most-popular-product/1/overview
   - type: Documentation
     url: https://developer.nytimes.com/docs/movie-reviews-api/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-movie-review-movies.yaml
   - type: Documentation
     url: https://developer.nytimes.com/docs/semantic-api-product/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-semantic-name.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-semantic-search.yaml
   - type: Documentation
     url: https://developer.nytimes.com/docs/timestags-product/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-times-tags-timestags.yaml
   - type: Documentation
     url: https://developer.nytimes.com/docs/timeswire-product/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-times-newswire-content.yaml
   - type: Documentation
     url: https://developer.nytimes.com/docs/top-stories-product/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-top-stories-stories.yaml
 - aid: the-new-york-times:the-new-york-times-stories-api
   name: The New York Times Stories API
   description: The Stories API from The New York Times — 2 operation(s) for stories.
@@ -266,38 +186,22 @@ apis:
     url: openapi/the-new-york-times-stories-api-openapi.yml
   - type: Documentation
     url: https://developer.nytimes.com/docs/archive-product/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-archive-archive.yaml
   - type: Documentation
     url: https://developer.nytimes.com/docs/articlesearch-product/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-article-search-stories.yaml
   - type: Documentation
     url: https://developer.nytimes.com/docs/books-product/1/overview
   - type: Documentation
     url: https://developer.nytimes.com/docs/most-popular-product/1/overview
   - type: Documentation
     url: https://developer.nytimes.com/docs/movie-reviews-api/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-movie-review-movies.yaml
   - type: Documentation
     url: https://developer.nytimes.com/docs/semantic-api-product/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-semantic-name.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-semantic-search.yaml
   - type: Documentation
     url: https://developer.nytimes.com/docs/timestags-product/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-times-tags-timestags.yaml
   - type: Documentation
     url: https://developer.nytimes.com/docs/timeswire-product/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-times-newswire-content.yaml
   - type: Documentation
     url: https://developer.nytimes.com/docs/top-stories-product/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-top-stories-stories.yaml
 - aid: the-new-york-times:the-new-york-times-timestags-api
   name: The New York Times Timestags API
   description: The Timestags API from The New York Times — 1 operation(s) for timestags.
@@ -310,38 +214,22 @@ apis:
     url: openapi/the-new-york-times-timestags-api-openapi.yml
   - type: Documentation
     url: https://developer.nytimes.com/docs/archive-product/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-archive-archive.yaml
   - type: Documentation
     url: https://developer.nytimes.com/docs/articlesearch-product/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-article-search-stories.yaml
   - type: Documentation
     url: https://developer.nytimes.com/docs/books-product/1/overview
   - type: Documentation
     url: https://developer.nytimes.com/docs/most-popular-product/1/overview
   - type: Documentation
     url: https://developer.nytimes.com/docs/movie-reviews-api/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-movie-review-movies.yaml
   - type: Documentation
     url: https://developer.nytimes.com/docs/semantic-api-product/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-semantic-name.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-semantic-search.yaml
   - type: Documentation
     url: https://developer.nytimes.com/docs/timestags-product/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-times-tags-timestags.yaml
   - type: Documentation
     url: https://developer.nytimes.com/docs/timeswire-product/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-times-newswire-content.yaml
   - type: Documentation
     url: https://developer.nytimes.com/docs/top-stories-product/1/overview
-  - type: X-NaftikoCapability
-    url: capabilities/new-york-times-top-stories-stories.yaml
 common:
   - type: AgenticAccess
     url: agentic-access/the-new-york-times-agentic-access.yml
