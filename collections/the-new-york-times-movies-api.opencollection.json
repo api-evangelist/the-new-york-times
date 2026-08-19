@@ -1,0 +1,131 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "The New York Times Archive Movies API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api-key",
+      "value": "{{api-key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Movies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Movie Critics Name, Bio And Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api.nytimes.com/svc/archive/v1/critics/:reviewer.json",
+            "params": [
+              {
+                "name": "reviewer",
+                "value": "",
+                "type": "path",
+                "description": "Reviewer name or \"all\" for all reviewers, \"full-time\" for full-time reviewers, or \"part-time\" for part-time reviewers."
+              }
+            ]
+          },
+          "docs": "Get movie critics. You can either specify the reviewer name or use \"all\", \"full-time\", or \"part-time\".\n"
+        },
+        {
+          "info": {
+            "name": "Get Movie Reviews",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api.nytimes.com/svc/archive/v1/reviews/:type.json",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "Filter by critics' pick or not."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Sets the starting point of the result set.  Needs to be multiple of 20."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "How to order the results."
+              }
+            ]
+          },
+          "docs": "Get movie reviews.  Can filter to only return Critics' Picks.\nSupports ordering results by-publication-date or by-opening-date.\nUse offset to paginate thru results, 20 at a time.\n"
+        },
+        {
+          "info": {
+            "name": "Search Movie Reviews",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api.nytimes.com/svc/archive/v1/reviews/search.json",
+            "params": [
+              {
+                "name": "critics-pick",
+                "value": "",
+                "type": "query",
+                "description": "Set to Y to only show critics' picks.  Otherwise shows both."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Sets the starting point of the result set (0, 20, ...).  Used to paginate thru results. Defaults to 0. The has_more field indicates the response has more results."
+              },
+              {
+                "name": "opening-date",
+                "value": "",
+                "type": "query",
+                "description": "U.S. opening date range. Start and end dates separated by colon (e.g. 1930-01-01:1940-01-01)."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Field to order results by (e.g. by-publication-date)."
+              },
+              {
+                "name": "publication-date",
+                "value": "",
+                "type": "query",
+                "description": "Review publication date range. Start and end dates separated by colon (e.g. 1930-01-01:1940-01-01)."
+              },
+              {
+                "name": "reviewer",
+                "value": "",
+                "type": "query",
+                "description": "Filter by reviewer byline (e.g. Stephen Holden)."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Search keyword (e.g. lebowski)."
+              }
+            ]
+          },
+          "docs": "Search for movie reviews.  Supports filtering by Critics' Pick.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

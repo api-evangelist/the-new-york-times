@@ -1,0 +1,378 @@
+{
+  "item": [
+    {
+      "id": "02480cc1-9b14-44e1-81a8-766eed151d94",
+      "name": "Stories",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "59184cbc-3bee-45ad-99bd-9fc971858d08",
+          "name": "The New York Times Article Search",
+          "request": {
+            "name": "The New York Times Article Search",
+            "description": {
+              "content": "Article Search requests use the following URI structure:\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "articlesearch.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "Search query term. Search is performed on the article body, headline and byline.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "fq",
+                  "value": "<string>",
+                  "description": "\"Filtered search query using standard Lucene syntax. \n\nThe filter query can be specified with or without a limiting field: label. \n\nSee Filtering Your Search for more information about filtering.\"\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "begin_date",
+                  "value": "<string>",
+                  "description": "\"Format: YYYYMMDD \n\nRestricts responses to results with publication dates of the date specified or later.\"\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "end_date",
+                  "value": "<string>",
+                  "description": "\"Format: YYYYMMDD \n\nRestricts responses to results with publication dates of the date specified or earlier.\"\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "\"By default, search results are sorted by their relevance to the query term (q). Use the sort parameter to sort by pub_date.\"\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "fl",
+                  "value": "<string>",
+                  "description": "\"Comma-delimited list of fields (no limit)\n\n  Limits the fields returned in your search results. By default (unless you include an fl list in your request), the following fields are returned: \n  \n  web_url\n  \n  snippet\n  \n  lead_paragraph\n  \n  abstract\n  \n  print_page\n  \n  blog\n  \n  source\n  \n  multimedia\n  \n  headline\n  \n  keywords\n  \n  pub_date\n  \n  document_type\n  \n  news_desk\n  \n  byline\n  \n  type_of_material\n  \n  _id\n  \n  word_count\"\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "hl",
+                  "value": "false",
+                  "description": "Enables highlighting in search results. When set to true, the query term (q) is highlighted in the headline and lead_paragraph fields.\n\nNote: If highlighting is enabled, snippet will be returned even if it is not specified in your fl list.\"\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0",
+                  "description": "\"The value of page corresponds to a set of 10 results (it does not indicate the starting number of the result set). For example, page=0 corresponds to records 0-9. To return records 10-19, set page to 1, not 10.\"\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "facet_field",
+                  "value": "<string>",
+                  "description": "Comma-delimited list of facets\n\nSpecifies the sets of facet values to include in the facets array at the end of response, which collects the facet values from all the search results. By default no facet fields will be returned. Below is the list of valid facets:\n\nsection_name\n\ndocument_type\n\ntype_of_material\n\nsource\n\nday_of_week\n\nTo learn more about using facets, see Using Facets.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "facet_filter",
+                  "value": "false",
+                  "description": "When set to true, facet counts will respect any applied filters (fq, date range, etc.) in addition to the main query term. To filter facet counts, specifying at least one facet_field is required. To learn more about using facets, see Using Facets.\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f3f8272e-aad4-46a2-8da5-e62d910bf148",
+              "name": "The docs requested by the article search.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "articlesearch.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fq",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "begin_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fl",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "hl",
+                      "value": "false"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "facet_field",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "facet_filter",
+                      "value": "false"
+                    },
+                    {
+                      "key": "api-key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"docs\": [\n      {\n        \"_id\": \"string\",\n        \"abstract\": \"string\",\n        \"byline\": {\n          \"organization\": \"string\",\n          \"original\": \"string\"\n        },\n        \"document_type\": \"string\",\n        \"headline\": {\n          \"kicker\": \"string\",\n          \"main\": \"string\"\n        },\n        \"keywords\": {\n          \"name\": \"string\",\n          \"rank\": \"string\",\n          \"value\": \"string\"\n        },\n        \"lead_paragraph\": \"string\",\n        \"multimedia\": [\n          {\n            \"caption\": \"string\",\n            \"copyright\": \"string\",\n            \"format\": \"string\",\n            \"height\": 8027,\n            \"subtype\": \"string\",\n            \"type\": \"string\",\n            \"url\": \"string\",\n            \"width\": 8807\n          },\n          {\n            \"caption\": \"string\",\n            \"copyright\": \"string\",\n            \"format\": \"string\",\n            \"height\": 7659,\n            \"subtype\": \"string\",\n            \"type\": \"string\",\n            \"url\": \"string\",\n            \"width\": 5326\n          }\n        ],\n        \"news_desk\": \"string\",\n        \"print_page\": \"string\",\n        \"pub_date\": \"string\",\n        \"section_name\": \"string\",\n        \"slideshow_credits\": \"string\",\n        \"snippet\": \"string\",\n        \"source\": \"string\",\n        \"subsection_name\": \"string\",\n        \"type_of_material\": \"string\",\n        \"web_url\": \"string\",\n        \"word_count\": \"string\"\n      },\n      {\n        \"_id\": \"string\",\n        \"abstract\": \"string\",\n        \"byline\": {\n          \"organization\": \"string\",\n          \"original\": \"string\"\n        },\n        \"document_type\": \"string\",\n        \"headline\": {\n          \"kicker\": \"string\",\n          \"main\": \"string\"\n        },\n        \"keywords\": {\n          \"name\": \"string\",\n          \"rank\": \"string\",\n          \"value\": \"string\"\n        },\n        \"lead_paragraph\": \"string\",\n        \"multimedia\": [\n          {\n            \"caption\": \"string\",\n            \"copyright\": \"string\",\n            \"format\": \"string\",\n            \"height\": 6114,\n            \"subtype\": \"string\",\n            \"type\": \"string\",\n            \"url\": \"string\",\n            \"width\": 5717\n          },\n          {\n            \"caption\": \"string\",\n            \"copyright\": \"string\",\n            \"format\": \"string\",\n            \"height\": 1016,\n            \"subtype\": \"string\",\n            \"type\": \"string\",\n            \"url\": \"string\",\n            \"width\": 5612\n          }\n        ],\n        \"news_desk\": \"string\",\n        \"print_page\": \"string\",\n        \"pub_date\": \"string\",\n        \"section_name\": \"string\",\n        \"slideshow_credits\": \"string\",\n        \"snippet\": \"string\",\n        \"source\": \"string\",\n        \"subsection_name\": \"string\",\n        \"type_of_material\": \"string\",\n        \"web_url\": \"string\",\n        \"word_count\": \"string\"\n      }\n    ],\n    \"meta\": {\n      \"hits\": 3203,\n      \"offset\": 1698,\n      \"time\": 3871\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "18f6f217-dd1b-410c-bbb5-15338439b463",
+          "name": "The New York Times Top Stories",
+          "request": {
+            "name": "The New York Times Top Stories",
+            "description": {
+              "content": "The Top Stories API returns an array of articles currently on the specified section.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "{{section}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "54fdc304-d54c-473c-9119-bceee79f3148",
+              "name": "An array of articles.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "{{section}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"copyright\": \"string\",\n  \"section\": \"string\",\n  \"last_updated\": \"string\",\n  \"num_results\": 7971,\n  \"results\": [\n    {\n      \"section\": \"string\",\n      \"subsection\": \"string\",\n      \"title\": \"string\",\n      \"abstract\": \"string\",\n      \"url\": \"string\",\n      \"uri\": \"string\",\n      \"byline\": \"string\",\n      \"item_type\": \"string\",\n      \"updated_date\": \"string\",\n      \"created_date\": \"string\",\n      \"published_date\": \"string\",\n      \"material_type_facet\": \"string\",\n      \"kicker\": \"string\",\n      \"des_facet\": [\n        \"string\",\n        \"string\"\n      ],\n      \"org_facet\": [\n        \"string\",\n        \"string\"\n      ],\n      \"per_facet\": [\n        \"string\",\n        \"string\"\n      ],\n      \"geo_facet\": [\n        \"string\",\n        \"string\"\n      ],\n      \"multimedia\": [\n        {\n          \"url\": \"string\",\n          \"format\": \"string\",\n          \"height\": 329,\n          \"width\": 3626,\n          \"type\": \"string\",\n          \"subtype\": \"string\",\n          \"caption\": \"string\",\n          \"copyright\": \"string\"\n        },\n        {\n          \"url\": \"string\",\n          \"format\": \"string\",\n          \"height\": 8289,\n          \"width\": 8818,\n          \"type\": \"string\",\n          \"subtype\": \"string\",\n          \"caption\": \"string\",\n          \"copyright\": \"string\"\n        }\n      ],\n      \"short_url\": \"string\"\n    },\n    {\n      \"section\": \"string\",\n      \"subsection\": \"string\",\n      \"title\": \"string\",\n      \"abstract\": \"string\",\n      \"url\": \"string\",\n      \"uri\": \"string\",\n      \"byline\": \"string\",\n      \"item_type\": \"string\",\n      \"updated_date\": \"string\",\n      \"created_date\": \"string\",\n      \"published_date\": \"string\",\n      \"material_type_facet\": \"string\",\n      \"kicker\": \"string\",\n      \"des_facet\": [\n        \"string\",\n        \"string\"\n      ],\n      \"org_facet\": [\n        \"string\",\n        \"string\"\n      ],\n      \"per_facet\": [\n        \"string\",\n        \"string\"\n      ],\n      \"geo_facet\": [\n        \"string\",\n        \"string\"\n      ],\n      \"multimedia\": [\n        {\n          \"url\": \"string\",\n          \"format\": \"string\",\n          \"height\": 6291,\n          \"width\": 2460,\n          \"type\": \"string\",\n          \"subtype\": \"string\",\n          \"caption\": \"string\",\n          \"copyright\": \"string\"\n        },\n        {\n          \"url\": \"string\",\n          \"format\": \"string\",\n          \"height\": 2580,\n          \"width\": 725,\n          \"type\": \"string\",\n          \"subtype\": \"string\",\n          \"caption\": \"string\",\n          \"copyright\": \"string\"\n        }\n      ],\n      \"short_url\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aa6d567c-2c4f-492f-abb7-db7dd824c96e",
+              "name": "Unauthorized request.  Make sure api-key is set.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "{{section}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "13b1c064-59ac-4d89-8433-672a78eaadaa",
+              "name": "Too many requests.  You reached your per minute or per day rate limit.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "{{section}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://api.nytimes.com/svc/archive/v1",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) The section the story appears in.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "home",
+      "key": "section"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "348bf4a5-f3ab-4e5a-8553-39f9d1a7bdd3",
+    "name": "The New York Times Archive Stories API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Archive API provides lists of NYT articles by month going back to 1851.  You can use it to build your own local database of NYT article metadata.",
+      "type": "text/plain"
+    }
+  }
+}

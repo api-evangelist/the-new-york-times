@@ -1,0 +1,90 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "The New York Times Archive Content API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api-key",
+      "value": "{{api-key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Content",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /content/{source}/{section}.json",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api.nytimes.com/svc/archive/v1/content/:source/:section.json",
+            "params": [
+              {
+                "name": "source",
+                "value": "",
+                "type": "path",
+                "description": "Limits the set of items by originating source.\n\nall = items from both The New York Times and The International New York Times\nnyt = New York Times items only\ninyt = International New York Times items only (FKA The International Herald Tribune)\n"
+              },
+              {
+                "name": "section",
+                "value": "",
+                "type": "path",
+                "description": "Limits the set of items by a section.\nall | A section name\n\n To get all sections, specify all. To get a particular section, use the section name returned by this request:\n http://api.nytimes.com/svc/news/v3/content/section-list.json\n"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limits the number of results.  Set to increment of 20 up to 500."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Sets the starting point of the result set."
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "GET /content.json",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api.nytimes.com/svc/archive/v1/content.json",
+            "params": [
+              {
+                "name": "url",
+                "value": "",
+                "type": "query",
+                "description": "The complete URL of a specific news item, URL-encoded or backslash-escaped"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "GET /content/section-list.json",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api.nytimes.com/svc/archive/v1/content/section-list.json"
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

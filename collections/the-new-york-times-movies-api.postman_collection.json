@@ -1,0 +1,674 @@
+{
+  "item": [
+    {
+      "id": "c6e27fef-7bfd-4341-ac29-754ca49e119f",
+      "name": "Movies",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "32bb36ad-409c-4dc0-91d2-048819f5994c",
+          "name": "Get Movie Critics Name, Bio And Image",
+          "request": {
+            "name": "Get Movie Critics Name, Bio And Image",
+            "description": {
+              "content": "Get movie critics. You can either specify the reviewer name or use \"all\", \"full-time\", or \"part-time\".\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "critics",
+                "{{reviewer}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "458ec7a7-3d7b-4c7d-8ec6-1aa336930d7b",
+              "name": "Array of movie critics.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "critics",
+                    "{{reviewer}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"copyright\": \"string\",\n  \"num_results\": 1433,\n  \"results\": [\n    {\n      \"display_name\": \"string\",\n      \"sort_name\": \"string\",\n      \"status\": \"string\",\n      \"bio\": \"string\",\n      \"seo-name\": \"string\",\n      \"multimedia\": {\n        \"resource\": {\n          \"type\": \"string\",\n          \"src\": \"string\",\n          \"height\": 5223,\n          \"width\": 6893,\n          \"credit\": \"string\"\n        }\n      }\n    },\n    {\n      \"display_name\": \"string\",\n      \"sort_name\": \"string\",\n      \"status\": \"string\",\n      \"bio\": \"string\",\n      \"seo-name\": \"string\",\n      \"multimedia\": {\n        \"resource\": {\n          \"type\": \"string\",\n          \"src\": \"string\",\n          \"height\": 6262,\n          \"width\": 8643,\n          \"credit\": \"string\"\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1a776488-feb8-43ee-ba4d-b060ab8a64da",
+              "name": "Unauthorized request.  Make sure api-key is set.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "critics",
+                    "{{reviewer}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "414e1b09-9dba-439c-a4d8-88c5ae82d5ee",
+              "name": "Too many requests.  You reached your per minute or per day rate limit.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "critics",
+                    "{{reviewer}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2fbb8707-4602-4810-881d-0bdb4965d198",
+          "name": "Get Movie Reviews",
+          "request": {
+            "name": "Get Movie Reviews",
+            "description": {
+              "content": "Get movie reviews.  Can filter to only return Critics' Picks.\nSupports ordering results by-publication-date or by-opening-date.\nUse offset to paginate thru results, 20 at a time.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reviews",
+                "{{type}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Sets the starting point of the result set.  Needs to be multiple of 20."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "How to order the results."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "86531382-9b8e-48ce-8cbc-f6f949328610",
+              "name": "Array of movie reviews.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reviews",
+                    "{{type}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api-key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"copyright\": \"string\",\n  \"has_more\": true,\n  \"num_results\": 5658,\n  \"results\": [\n    {\n      \"display_title\": \"string\",\n      \"mpaa_rating\": \"string\",\n      \"critics_pick\": 6800,\n      \"byline\": \"string\",\n      \"headline\": \"string\",\n      \"summary_short\": \"string\",\n      \"publication_date\": \"string\",\n      \"opening_date\": \"string\",\n      \"date_updated\": \"string\",\n      \"link\": {\n        \"type\": \"string\",\n        \"url\": \"string\",\n        \"suggested_link_text\": \"string\"\n      },\n      \"multimedia\": {\n        \"type\": \"string\",\n        \"src\": \"string\",\n        \"width\": 7444,\n        \"height\": 7041\n      }\n    },\n    {\n      \"display_title\": \"string\",\n      \"mpaa_rating\": \"string\",\n      \"critics_pick\": 9713,\n      \"byline\": \"string\",\n      \"headline\": \"string\",\n      \"summary_short\": \"string\",\n      \"publication_date\": \"string\",\n      \"opening_date\": \"string\",\n      \"date_updated\": \"string\",\n      \"link\": {\n        \"type\": \"string\",\n        \"url\": \"string\",\n        \"suggested_link_text\": \"string\"\n      },\n      \"multimedia\": {\n        \"type\": \"string\",\n        \"src\": \"string\",\n        \"width\": 9853,\n        \"height\": 5536\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d3c40046-b9e5-4f20-b9b5-aaf584e0c07d",
+              "name": "Unauthorized request.  Make sure api-key is set.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reviews",
+                    "{{type}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api-key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c2e22c47-beeb-453a-bbc7-45be93e27341",
+              "name": "Too many requests.  You reached your per minute or per day rate limit.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reviews",
+                    "{{type}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api-key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "399733b2-f84e-44ca-9dee-a5e190054fab",
+          "name": "Search Movie Reviews",
+          "request": {
+            "name": "Search Movie Reviews",
+            "description": {
+              "content": "Search for movie reviews.  Supports filtering by Critics' Pick.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reviews",
+                "search.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "critics-pick",
+                  "value": "<string>",
+                  "description": "Set to Y to only show critics' picks.  Otherwise shows both."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Sets the starting point of the result set (0, 20, ...).  Used to paginate thru results. Defaults to 0. The has_more field indicates the response has more results."
+                },
+                {
+                  "disabled": false,
+                  "key": "opening-date",
+                  "value": "<string>",
+                  "description": "U.S. opening date range. Start and end dates separated by colon (e.g. 1930-01-01:1940-01-01)."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "Field to order results by (e.g. by-publication-date)."
+                },
+                {
+                  "disabled": false,
+                  "key": "publication-date",
+                  "value": "<string>",
+                  "description": "Review publication date range. Start and end dates separated by colon (e.g. 1930-01-01:1940-01-01)."
+                },
+                {
+                  "disabled": false,
+                  "key": "reviewer",
+                  "value": "<string>",
+                  "description": "Filter by reviewer byline (e.g. Stephen Holden)."
+                },
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "Search keyword (e.g. lebowski)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "85055830-676d-4684-a3d9-562d7835de82",
+              "name": "Array of movie reviews.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reviews",
+                    "search.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "critics-pick",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "opening-date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "publication-date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "reviewer",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api-key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"copyright\": \"string\",\n  \"has_more\": true,\n  \"num_results\": 7240,\n  \"results\": [\n    {\n      \"display_title\": \"string\",\n      \"mpaa_rating\": \"string\",\n      \"critics_pick\": 1455,\n      \"byline\": \"string\",\n      \"headline\": \"string\",\n      \"summary_short\": \"string\",\n      \"publication_date\": \"string\",\n      \"opening_date\": \"string\",\n      \"date_updated\": \"string\",\n      \"link\": {\n        \"type\": \"string\",\n        \"url\": \"string\",\n        \"suggested_link_text\": \"string\"\n      },\n      \"multimedia\": {\n        \"type\": \"string\",\n        \"src\": \"string\",\n        \"width\": 1715,\n        \"height\": 207\n      }\n    },\n    {\n      \"display_title\": \"string\",\n      \"mpaa_rating\": \"string\",\n      \"critics_pick\": 3444,\n      \"byline\": \"string\",\n      \"headline\": \"string\",\n      \"summary_short\": \"string\",\n      \"publication_date\": \"string\",\n      \"opening_date\": \"string\",\n      \"date_updated\": \"string\",\n      \"link\": {\n        \"type\": \"string\",\n        \"url\": \"string\",\n        \"suggested_link_text\": \"string\"\n      },\n      \"multimedia\": {\n        \"type\": \"string\",\n        \"src\": \"string\",\n        \"width\": 6696,\n        \"height\": 7656\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "13954303-be8d-4263-aace-416812a231c4",
+              "name": "Unauthorized request.  Make sure api-key is set.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reviews",
+                    "search.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "critics-pick",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "opening-date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "publication-date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "reviewer",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api-key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "61cc851f-4ca2-4201-877f-ffb87145e329",
+              "name": "Too many requests.  You reached your per minute or per day rate limit.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reviews",
+                    "search.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "critics-pick",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "opening-date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "publication-date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "reviewer",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api-key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://api.nytimes.com/svc/archive/v1",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) Reviewer name or \"all\" for all reviewers, \"full-time\" for full-time reviewers, or \"part-time\" for part-time reviewers.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "reviewer"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) Filter by critics' pick or not.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "type"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2c59b973-9e4b-4006-a79a-76848f67bdb2",
+    "name": "The New York Times Archive Movies API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Archive API provides lists of NYT articles by month going back to 1851.  You can use it to build your own local database of NYT article metadata.",
+      "type": "text/plain"
+    }
+  }
+}

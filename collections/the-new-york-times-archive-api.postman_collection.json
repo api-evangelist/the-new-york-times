@@ -1,0 +1,152 @@
+{
+  "item": [
+    {
+      "id": "cc34133b-17a2-46ec-a158-177ba31a9603",
+      "name": "Archive",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ff716fd0-7f03-4df2-bb72-4e277e964497",
+          "name": "The New York Times Archive API",
+          "request": {
+            "name": "The New York Times Archive API",
+            "description": {
+              "content": "The Archive API provides lists of NYT articles by month going back to 1851.  Simply pass in the year and month you want and it returns a JSON object with all articles for that month.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":year",
+                "{{month}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "2016",
+                  "key": "year",
+                  "description": "(Required) The year (e.g. 2016)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2d1057cd-29b3-40fa-a3a0-089922327fcf",
+              "name": "The docs requested.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":year",
+                    "{{month}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "2016",
+                      "key": "year",
+                      "description": "(Required) The year (e.g. 2016)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"docs\": [\n      {\n        \"_id\": \"string\",\n        \"abstract\": \"string\",\n        \"byline\": {\n          \"organization\": \"string\",\n          \"original\": \"string\"\n        },\n        \"document_type\": \"string\",\n        \"headline\": {\n          \"kicker\": \"string\",\n          \"main\": \"string\"\n        },\n        \"keywords\": {\n          \"name\": \"string\",\n          \"rank\": \"string\",\n          \"value\": \"string\"\n        },\n        \"lead_paragraph\": \"string\",\n        \"multimedia\": [\n          {\n            \"caption\": \"string\",\n            \"copyright\": \"string\",\n            \"format\": \"string\",\n            \"height\": 3844,\n            \"subtype\": \"string\",\n            \"type\": \"string\",\n            \"url\": \"string\",\n            \"width\": 1181\n          },\n          {\n            \"caption\": \"string\",\n            \"copyright\": \"string\",\n            \"format\": \"string\",\n            \"height\": 5783,\n            \"subtype\": \"string\",\n            \"type\": \"string\",\n            \"url\": \"string\",\n            \"width\": 5984\n          }\n        ],\n        \"news_desk\": \"string\",\n        \"print_page\": \"string\",\n        \"pub_date\": \"string\",\n        \"section_name\": \"string\",\n        \"slideshow_credits\": \"string\",\n        \"snippet\": \"string\",\n        \"source\": \"string\",\n        \"subsection_name\": \"string\",\n        \"type_of_material\": \"string\",\n        \"web_url\": \"string\",\n        \"word_count\": \"string\"\n      },\n      {\n        \"_id\": \"string\",\n        \"abstract\": \"string\",\n        \"byline\": {\n          \"organization\": \"string\",\n          \"original\": \"string\"\n        },\n        \"document_type\": \"string\",\n        \"headline\": {\n          \"kicker\": \"string\",\n          \"main\": \"string\"\n        },\n        \"keywords\": {\n          \"name\": \"string\",\n          \"rank\": \"string\",\n          \"value\": \"string\"\n        },\n        \"lead_paragraph\": \"string\",\n        \"multimedia\": [\n          {\n            \"caption\": \"string\",\n            \"copyright\": \"string\",\n            \"format\": \"string\",\n            \"height\": 6814,\n            \"subtype\": \"string\",\n            \"type\": \"string\",\n            \"url\": \"string\",\n            \"width\": 4408\n          },\n          {\n            \"caption\": \"string\",\n            \"copyright\": \"string\",\n            \"format\": \"string\",\n            \"height\": 5353,\n            \"subtype\": \"string\",\n            \"type\": \"string\",\n            \"url\": \"string\",\n            \"width\": 957\n          }\n        ],\n        \"news_desk\": \"string\",\n        \"print_page\": \"string\",\n        \"pub_date\": \"string\",\n        \"section_name\": \"string\",\n        \"slideshow_credits\": \"string\",\n        \"snippet\": \"string\",\n        \"source\": \"string\",\n        \"subsection_name\": \"string\",\n        \"type_of_material\": \"string\",\n        \"web_url\": \"string\",\n        \"word_count\": \"string\"\n      }\n    ],\n    \"meta\": {\n      \"hits\": 2645,\n      \"offset\": 3410,\n      \"time\": 9390\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://api.nytimes.com/svc/archive/v1",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) The month number (e.g. 1 for January).",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "1",
+      "key": "month"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a4e46171-9b21-48f8-b8df-b563423f2a39",
+    "name": "The New York Times Archive API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Archive API provides lists of NYT articles by month going back to 1851.  You can use it to build your own local database of NYT article metadata.",
+      "type": "text/plain"
+    }
+  }
+}

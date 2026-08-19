@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "The New York Times Archive API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api-key",
+      "value": "{{api-key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Archive",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "The New York Times Archive API",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api.nytimes.com/svc/archive/v1/:year/:month.json",
+            "params": [
+              {
+                "name": "year",
+                "value": "",
+                "type": "path",
+                "description": "The year (e.g. 2016)."
+              },
+              {
+                "name": "month",
+                "value": "",
+                "type": "path",
+                "description": "The month number (e.g. 1 for January)."
+              }
+            ]
+          },
+          "docs": "The Archive API provides lists of NYT articles by month going back to 1851.  Simply pass in the year and month you want and it returns a JSON object with all articles for that month.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
