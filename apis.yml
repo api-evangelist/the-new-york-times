@@ -6,6 +6,18 @@ description: The New York Times is one of the world's most respected news organi
   of RESTful APIs enabling developers to search and access NYT articles, best-seller book lists, movie reviews, semantic metadata,
   top stories, and popular content. All APIs require an API key obtained from the NYT Developer Portal.
 kind: contract
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
