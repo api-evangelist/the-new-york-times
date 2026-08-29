@@ -243,6 +243,9 @@ apis:
   - type: Documentation
     url: https://developer.nytimes.com/docs/top-stories-product/1/overview
 common:
+  - type: CapabilityMap
+    url: capabilities/the-new-york-times-capability-edges.yml
+    name: The New York Times Business Capability Map
   - type: AgenticAccess
     url: agentic-access/the-new-york-times-agentic-access.yml
   - type: VulnerabilityDisclosure

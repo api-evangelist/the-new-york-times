@@ -1,0 +1,26 @@
+slug: the-new-york-times
+provider: The New York Times
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Media, Entertainment & Telecom Content
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Archive
+  spec_file: the-new-york-times-archive-api-openapi.yml
+  capability_id: BC-3710.20
+  capability_id_l1: BC-3710
+  capability_name: Metadata Cataloguing
+  confidence: 0.75
+  evidence: The Archive API provides lists of NYT articles by month going back to 1851 ... build your
+    own local database of NYT article metadata
+  reason: Provides archival editorial article metadata for cataloguing/discovery of content assets. Maps
+    to media asset metadata cataloguing; some ambiguity between archive/preservation and metadata cataloguing,
+    but the operation returns article metadata records (schema Doc).
