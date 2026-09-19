@@ -53,6 +53,8 @@ apis:
   humanURL: https://developer.nytimes.com/docs/archive-product/1/overview
   baseURL: https://api.nytimes.com/svc/archive/v1
   tags:
+  - Archives
+  tags_raw:
   - Archive
   properties:
   - type: OpenAPI
