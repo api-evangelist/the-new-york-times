@@ -1,9 +1,9 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  description: The Archive API provides lists of NYT articles by month going back to 1851.  You can use it to build your own local database of NYT article metadata.
+  description: The Archive API provides lists of NYT articles by month going back to 1851. You can use it to build your own local database of NYT article metadata.
   termsOfService: http://developer.nytimes.com/tou
-  title: The New York Times Archive API
-  version: '3.0'
+  title: New York Times Archive API
+  version: 1.0.0
   x-apiClientRegistration:
     url: http://developer.nytimes.com/signup
   x-apisguru-categories:
@@ -14,6 +14,7 @@ info:
   x-origin:
   - format: openapi
     url: https://raw.githubusercontent.com/nytimes/public_api_specs/master/archive_api/archive_api.json
+    version: '3.0'
   x-providerName: nytimes.com
   x-serviceName: archive
 servers:
@@ -26,9 +27,7 @@ tags:
 paths:
   /{year}/{month}.json:
     get:
-      description: 'The Archive API provides lists of NYT articles by month going back to 1851.  Simply pass in the year and month you want and it returns a JSON object with all articles for that month.
-
-        '
+      description: The Archive API provides lists of NYT articles by month going back to 1851. Simply pass in the year and month you want and it returns a JSON object with all articles for that month.
       parameters:
       - description: The year (e.g. 2016).
         in: path
@@ -79,6 +78,8 @@ paths:
       summary: The New York Times Archive API
       tags:
       - Archive
+      operationId: getByYear{month}Json
+      x-operation-id-source: derived
 components:
   schemas:
     Doc:

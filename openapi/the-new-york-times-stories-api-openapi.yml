@@ -1,24 +1,19 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  description: The Archive API provides lists of NYT articles by month going back to 1851.  You can use it to build your own local database of NYT article metadata.
-  termsOfService: http://developer.nytimes.com/tou
-  title: The New York Times Archive Stories API
-  version: '3.0'
-  x-apiClientRegistration:
-    url: http://developer.nytimes.com/signup
-  x-apisguru-categories:
-  - media
-  - open_data
-  x-logo:
-    url: https://api.apis.guru/v2/cache/logo/https_static01.nyt.com_images_icons_t_logo_291_black.png
-  x-origin:
-  - format: openapi
-    url: https://raw.githubusercontent.com/nytimes/public_api_specs/master/archive_api/archive_api.json
-  x-providerName: nytimes.com
-  x-serviceName: archive
+  title: New York Times Stories API
+  x-refined-note:
+  - x-apiClientRegistration differs across the merged source definitions and was not carried
+  - x-apisguru-categories differs across the merged source definitions and was not carried
+  - x-logo differs across the merged source definitions and was not carried
+  - x-origin differs across the merged source definitions and was not carried
+  - x-providerName differs across the merged source definitions and was not carried
+  - x-serviceName differs across the merged source definitions and was not carried
+  version: '1.0'
+  description: 'Operations tagged Stories across 2 of this provider''s published API definitions: new-york-times-article-search-openapi-original.yml, new-york-times-top-stories-openapi-original.yml. Each path carries the servers of the definition it was published in.'
 servers:
-- url: http://api.nytimes.com/svc/archive/v1
-- url: https://api.nytimes.com/svc/archive/v1
+- url: http://api.nytimes.com/svc/search/v2
+- url: https://api.nytimes.com/svc/search/v2
+- url: https://api.nytimes.com/svc/topstories/v2
 security:
 - apikey: []
 tags:
@@ -26,9 +21,7 @@ tags:
 paths:
   /articlesearch.json:
     get:
-      description: 'Article Search requests use the following URI structure:
-
-        '
+      description: 'Article Search requests use the following URI structure:'
       parameters:
       - description: 'Search query term. Search is performed on the article body, headline and byline.
 
@@ -161,14 +154,17 @@ paths:
       summary: The New York Times Article Search
       tags:
       - Stories
+      operationId: getArticlesearchJson
+      x-operation-id-source: derived
+    servers:
+    - url: http://api.nytimes.com/svc/search/v2
+    - url: https://api.nytimes.com/svc/search/v2
   /{section}.json:
     get:
       tags:
       - Stories
       summary: The New York Times Top Stories
-      description: 'The Top Stories API returns an array of articles currently on the specified section.
-
-        '
+      description: The Top Stories API returns an array of articles currently on the specified section.
       parameters:
       - name: section
         in: path
@@ -232,6 +228,10 @@ paths:
         '429':
           description: Too many requests.  You reached your per minute or per day rate limit.
           content: {}
+      operationId: get{section}Json
+      x-operation-id-source: derived
+    servers:
+    - url: https://api.nytimes.com/svc/topstories/v2
 components:
   schemas:
     Doc:
@@ -392,3 +392,6 @@ components:
       type: apiKey
 externalDocs:
   url: http://developer.nytimes.com/
+x-refined-from:
+- new-york-times-article-search-openapi-original.yml
+- new-york-times-top-stories-openapi-original.yml

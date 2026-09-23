@@ -1,29 +1,47 @@
 {
   "provider": "the-new-york-times",
   "sources": [
-    "the-new-york-times-archive-api-openapi.yml",
-    "the-new-york-times-content-api-openapi.yml",
-    "the-new-york-times-movies-api-openapi.yml",
-    "the-new-york-times-name-api-openapi.yml",
-    "the-new-york-times-search-api-openapi.yml",
-    "the-new-york-times-stories-api-openapi.yml",
-    "the-new-york-times-timestags-api-openapi.yml"
+    "_original/new-york-times-archive-openapi-original.yml",
+    "_original/new-york-times-article-search-openapi-original.yml",
+    "_original/new-york-times-movie-review-openapi-original.yml",
+    "_original/new-york-times-semantic-openapi-original.yml",
+    "_original/new-york-times-times-newswire-openapi-original.yml",
+    "_original/new-york-times-times-tags-openapi-original.yml",
+    "_original/new-york-times-top-stories-openapi-original.yml"
   ],
   "outputs": [
     "the-new-york-times-archive-api-openapi.yml",
-    "the-new-york-times-content-api-openapi.yml",
+    "the-new-york-times-stories-api-openapi.yml",
     "the-new-york-times-movies-api-openapi.yml",
     "the-new-york-times-name-api-openapi.yml",
     "the-new-york-times-search-api-openapi.yml",
-    "the-new-york-times-stories-api-openapi.yml",
+    "the-new-york-times-content-api-openapi.yml",
     "the-new-york-times-timestags-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
+  "notes": [
+    "sourced from openapi/_original/ (7 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "new-york-times-archive-openapi-original.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "new-york-times-article-search-openapi-original.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "new-york-times-movie-review-openapi-original.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "new-york-times-semantic-openapi-original.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "new-york-times-times-newswire-openapi-original.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "new-york-times-times-tags-openapi-original.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "new-york-times-top-stories-openapi-original.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "tag 'Stories' spans 2 source specs (new-york-times-article-search-openapi-original.yml, new-york-times-top-stories-openapi-original.yml): per-path servers applied",
+    "apis.yml register: already-registered"
+  ],
   "skipped": [
     "new-york-times-books-openapi-original.yml: parse error ReaderError: unacceptable character #x009d: special characters are not allowed",
-    "new-york-times-most-popular-openapi-original.yml: parse error ReaderError: unacceptable character #x009d: special characters are not allowed"
+    "new-york-times-most-popular-openapi-original.yml: parse error ReaderError: unacceptable character #x009d: special characters are not allowed",
+    "the-new-york-times-archive-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "the-new-york-times-content-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "the-new-york-times-movies-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "the-new-york-times-name-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "the-new-york-times-search-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "the-new-york-times-stories-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "the-new-york-times-timestags-api-openapi.yml: previously refined output, superseded by openapi/_original/"
   ]
 }

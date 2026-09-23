@@ -1,24 +1,11 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  description: The Archive API provides lists of NYT articles by month going back to 1851.  You can use it to build your own local database of NYT article metadata.
-  termsOfService: http://developer.nytimes.com/tou
-  title: The New York Times Archive Name API
-  version: '3.0'
-  x-apiClientRegistration:
-    url: http://developer.nytimes.com/signup
-  x-apisguru-categories:
-  - media
-  - open_data
-  x-logo:
-    url: https://api.apis.guru/v2/cache/logo/https_static01.nyt.com_images_icons_t_logo_291_black.png
-  x-origin:
-  - format: openapi
-    url: https://raw.githubusercontent.com/nytimes/public_api_specs/master/archive_api/archive_api.json
-  x-providerName: nytimes.com
-  x-serviceName: archive
+  title: New York Times Semantic Name API
+  description: The Semantic API complements the Articles API.
+  version: 2.0.0
 servers:
-- url: http://api.nytimes.com/svc/archive/v1
-- url: https://api.nytimes.com/svc/archive/v1
+- url: http://api.nytimes.com/svc/semantic/v2/concept
+- url: https://api.nytimes.com/svc/semantic/v2/concept
 security:
 - apikey: []
 tags:
@@ -114,6 +101,10 @@ paths:
                       $ref: '#/components/schemas/Concept'
       tags:
       - Name
+      summary: Get name by concept type {specific concept} json
+      x-summary-source: derived
+      operationId: getNameByConceptType{specificConcept}Json
+      x-operation-id-source: derived
 components:
   schemas:
     ConceptRelation:
@@ -285,8 +276,6 @@ components:
             $ref: '#/components/schemas/ConceptRelation'
   securitySchemes:
     apikey:
-      in: query
-      name: api-key
       type: apiKey
-externalDocs:
-  url: http://developer.nytimes.com/
+      name: api-key
+      in: query
